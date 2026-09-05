@@ -3,7 +3,7 @@
 I'm excited to share my personal portfolio website built with Streamlit!
 
 🌐 **Live Demo:** https://my-portfolio-22.streamlit.app
-💻 **GitHub:** [Add your GitHub repo link here]
+💻 **GitHub:** https://github.com/monikajaiswal22/my-portfolio
 
 **✨ What's Inside:**
 • 👩‍💻 About Me - My journey in tech
