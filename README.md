@@ -12,7 +12,7 @@ I'm excited to share my personal portfolio website built with Streamlit!
 • ⚡ Technical Skills (Python, Flask, React, Django & more)
 • 💼 Freelance Services with transparent pricing
 • 🚀 Featured Projects with live demos
-• 📬 Contact Form to reach out
+• 📬 Contact Form to reach out 
 
 **🛠️ Built With:**
 Python | Streamlit | HTML/CSS
