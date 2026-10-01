@@ -10,27 +10,174 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== FORCE LIGHT (hide dark toggles) ====================
+# ==================== FORCE LIGHT THEME (HARD OVERRIDE) ====================
 st.markdown("""
 <style>
-    /* Hide Streamlit's dark/light theme toggle & menu */
+    /* Hide Streamlit default UI */
     [data-testid="stToolbar"] { display: none !important; }
     [data-testid="stDecoration"] { display: none !important; }
     [data-testid="stStatusWidget"] { display: none !important; }
+    [data-testid="stHeader"] { display: none !important; background: transparent !important; }
     #MainMenu { visibility: hidden !important; }
     header { visibility: hidden !important; }
     footer { visibility: hidden !important; }
     
-    /* Force light on all containers */
-    .stApp, [data-testid="stAppViewContainer"] {
+    /* HARD FORCE LIGHT - HTML, BODY, ALL CONTAINERS */
+    html, body { background: #FFFFFF !important; color: #1F2937 !important; }
+    
+    .stApp,
+    [data-testid="stAppViewContainer"],
+    [data-testid="stAppViewBlockContainer"],
+    [data-testid="stVerticalBlock"],
+    [data-testid="stHorizontalBlock"],
+    [data-testid="stHeader"],
+    section.main,
+    main,
+    .main {
         background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%) !important;
+        color: #1F2937 !important;
     }
+    
+    /* ALL TEXT FORCE DARK */
+    .stApp p, .stApp span, .stApp div, .stApp label,
+    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
+    .stApp li, .stApp a, .stApp small, .stApp strong,
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] div,
+    [data-testid="stMarkdownContainer"] h1,
+    [data-testid="stMarkdownContainer"] h2,
+    [data-testid="stMarkdownContainer"] h3,
+    [data-testid="stMarkdownContainer"] h4 {
+        color: #1F2937 !important;
+    }
+    
+    /* KEEP OUR GRADIENT TEXT AS GRADIENT */
+    .text-gradient-blue,
+    .text-gradient-red,
+    .section-title {
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    
+    /* KEEP HEADER TEXT WHITE */
+    .header, .header *,
+    .name, .title, .location,
+    .header .btn-blue, .header .btn-red {
+        color: #FFFFFF !important;
+    }
+    .header .btn-blue, .header .btn-red {
+        color: #FFFFFF !important;
+    }
+    .header .title { color: #DBEAFE !important; }
+    .header .location { color: #BFDBFE !important; }
+    
+    /* INPUT FIELDS - FORCE LIGHT */
+    .stTextInput input,
+    .stTextArea textarea,
+    .stSelectbox select,
+    .stNumberInput input,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        background: #FFFFFF !important;
+        color: #1F2937 !important;
+        border: 1px solid rgba(37,99,235,0.2) !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input::placeholder,
+    .stTextArea textarea::placeholder {
+        color: #9CA3AF !important;
+    }
+    
+    /* SELECTBOX DROPDOWN */
+    .stSelectbox div[data-baseweb="select"] > div,
+    [data-baseweb="select"] > div {
+        background: #FFFFFF !important;
+        color: #1F2937 !important;
+        border: 1px solid rgba(37,99,235,0.2) !important;
+    }
+    [data-baseweb="popover"],
+    [data-baseweb="menu"],
+    ul[role="listbox"],
+    li[role="option"] {
+        background: #FFFFFF !important;
+        color: #1F2937 !important;
+    }
+    
+    /* FORM */
+    [data-testid="stForm"] {
+        background: #FFFFFF !important;
+        border: 1px solid rgba(37,99,235,0.15) !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+    }
+    
+    /* FORM LABELS */
+    [data-testid="stWidgetLabel"] label,
+    .stTextInput label,
+    .stTextArea label,
+    .stSelectbox label {
+        color: #1F2937 !important;
+    }
+    
+    /* BUTTONS IN FORM */
+    .stButton button,
+    .stFormSubmitButton button,
+    button[kind="primary"],
+    button[kind="secondary"] {
+        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        font-weight: 600 !important;
+    }
+    .stButton button:hover,
+    .stFormSubmitButton button:hover {
+        background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%) !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* ALERTS / INFO BOXES */
+    [data-testid="stAlert"] {
+        background: #FFFFFF !important;
+        color: #1F2937 !important;
+        border: 1px solid rgba(37,99,235,0.2) !important;
+    }
+    [data-testid="stAlert"] * {
+        color: #1F2937 !important;
+    }
+    
+    /* SUCCESS / ERROR / WARNING */
+    .stSuccess, .stSuccess *,
+    .stError, .stError *,
+    .stWarning, .stWarning *,
+    .stInfo, .stInfo * {
+        color: #1F2937 !important;
+    }
+    
+    /* BALLOONS (don't touch) */
+    [data-testid="stBalloons"] { background: transparent !important; }
+    
+    /* SIDEBAR */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebar"] * {
+        background: #FFFFFF !important;
+        color: #1F2937 !important;
+    }
+    
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { background: #F0F4FF; }
+    ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 10px; }
+    
+    /* SVG icons in header (menu) */
+    [data-testid="stHeader"] button svg { fill: #1F2937 !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # ==================== RESUME LOADER ====================
 def get_resume_download_link(file_path="resumee.pdf"):
-    """Read resumee.pdf and return base64 download link"""
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:
             data = f.read()
@@ -40,7 +187,7 @@ def get_resume_download_link(file_path="resumee.pdf"):
     else:
         return '<a href="#" class="btn-red" onclick="alert(\'Resume file not found.\'); return false;">📄 Download Resume</a>'
 
-# ==================== CSS ====================
+# ==================== MAIN CSS ====================
 st.markdown("""
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -95,8 +242,10 @@ st.markdown("""
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; margin-bottom: 20px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;
+        color: #1F2937;
     }
     .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .card p { color: #1F2937; }
     
     /* STAT BOX */
     .stat-box {
@@ -104,6 +253,7 @@ st.markdown("""
         border-radius: 12px; padding: 20px; text-align: center;
         border-top: 3px solid #1E3A8A;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%;
+        color: #1F2937;
     }
     .stat-number {
         font-size: 32px; font-weight: 700;
@@ -118,7 +268,9 @@ st.markdown("""
         border-left: 4px solid #DC2626; padding: 20px;
         margin-bottom: 15px; border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        color: #1F2937;
     }
+    .edu-card p { color: #1F2937; }
     .edu-title {
         font-size: 18px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
@@ -140,6 +292,7 @@ st.markdown("""
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; text-align: center; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
+        color: #1F2937;
     }
     .service-card:hover { border-color: #2563EB; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
     .service-price {
@@ -155,8 +308,10 @@ st.markdown("""
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
+        color: #1F2937;
     }
     .project-card:hover { border-color: #DC2626; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .project-card p { color: #6B7280; }
     .project-tech { color: #DC2626; font-size: 13px; margin: 8px 0; }
     .featured-badge {
         background: linear-gradient(135deg, #10b981, #059669);
@@ -192,6 +347,8 @@ st.markdown("""
         color: #9CA3AF; padding: 30px; text-align: center;
         border-radius: 12px; margin-top: 40px;
     }
+    .footer p { color: #9CA3AF; }
+    
     hr { margin: 20px 0; border: none; border-top: 1px solid rgba(37,99,235,0.2); }
     
     .text-gradient-blue {
@@ -255,7 +412,7 @@ st.markdown(f"""
         </div>
         <div style="text-align: center;">
             <div style="font-size: 80px;">👩‍💻</div>
-            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 10px;">
+            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 10px; color: white;">
                 🔥 Open for Work
             </div>
         </div>
@@ -518,7 +675,7 @@ if others:
             </div>
             """, unsafe_allow_html=True)
 
-st.info("💡 **Note:** Please wait for 20-30 seconds. College Management & E-Learning apps Render free tier hosted hain — pehli visit pe wake up hone me time lagta hai.")
+st.info("💡 **Note:** Please wait for 20-30 seconds. College Management & E-Learning apps Render free tier hosted.")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
