@@ -10,174 +10,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== FORCE LIGHT THEME (HARD OVERRIDE) ====================
-st.markdown("""
-<style>
-    /* Hide Streamlit default UI */
-    [data-testid="stToolbar"] { display: none !important; }
-    [data-testid="stDecoration"] { display: none !important; }
-    [data-testid="stStatusWidget"] { display: none !important; }
-    [data-testid="stHeader"] { display: none !important; background: transparent !important; }
-    #MainMenu { visibility: hidden !important; }
-    header { visibility: hidden !important; }
-    footer { visibility: hidden !important; }
-    
-    /* HARD FORCE LIGHT - HTML, BODY, ALL CONTAINERS */
-    html, body { background: #FFFFFF !important; color: #1F2937 !important; }
-    
-    .stApp,
-    [data-testid="stAppViewContainer"],
-    [data-testid="stAppViewBlockContainer"],
-    [data-testid="stVerticalBlock"],
-    [data-testid="stHorizontalBlock"],
-    [data-testid="stHeader"],
-    section.main,
-    main,
-    .main {
-        background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%) !important;
-        color: #1F2937 !important;
-    }
-    
-    /* ALL TEXT FORCE DARK */
-    .stApp p, .stApp span, .stApp div, .stApp label,
-    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
-    .stApp li, .stApp a, .stApp small, .stApp strong,
-    [data-testid="stMarkdownContainer"] p,
-    [data-testid="stMarkdownContainer"] span,
-    [data-testid="stMarkdownContainer"] div,
-    [data-testid="stMarkdownContainer"] h1,
-    [data-testid="stMarkdownContainer"] h2,
-    [data-testid="stMarkdownContainer"] h3,
-    [data-testid="stMarkdownContainer"] h4 {
-        color: #1F2937 !important;
-    }
-    
-    /* KEEP OUR GRADIENT TEXT AS GRADIENT */
-    .text-gradient-blue,
-    .text-gradient-red,
-    .section-title {
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-    }
-    
-    /* KEEP HEADER TEXT WHITE */
-    .header, .header *,
-    .name, .title, .location,
-    .header .btn-blue, .header .btn-red {
-        color: #FFFFFF !important;
-    }
-    .header .btn-blue, .header .btn-red {
-        color: #FFFFFF !important;
-    }
-    .header .title { color: #DBEAFE !important; }
-    .header .location { color: #BFDBFE !important; }
-    
-    /* INPUT FIELDS - FORCE LIGHT */
-    .stTextInput input,
-    .stTextArea textarea,
-    .stSelectbox select,
-    .stNumberInput input,
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid rgba(37,99,235,0.2) !important;
-        border-radius: 8px !important;
-    }
-    .stTextInput input::placeholder,
-    .stTextArea textarea::placeholder {
-        color: #9CA3AF !important;
-    }
-    
-    /* SELECTBOX DROPDOWN */
-    .stSelectbox div[data-baseweb="select"] > div,
-    [data-baseweb="select"] > div {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid rgba(37,99,235,0.2) !important;
-    }
-    [data-baseweb="popover"],
-    [data-baseweb="menu"],
-    ul[role="listbox"],
-    li[role="option"] {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-    }
-    
-    /* FORM */
-    [data-testid="stForm"] {
-        background: #FFFFFF !important;
-        border: 1px solid rgba(37,99,235,0.15) !important;
-        border-radius: 12px !important;
-        padding: 20px !important;
-    }
-    
-    /* FORM LABELS */
-    [data-testid="stWidgetLabel"] label,
-    .stTextInput label,
-    .stTextArea label,
-    .stSelectbox label {
-        color: #1F2937 !important;
-    }
-    
-    /* BUTTONS IN FORM */
-    .stButton button,
-    .stFormSubmitButton button,
-    button[kind="primary"],
-    button[kind="secondary"] {
-        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        font-weight: 600 !important;
-    }
-    .stButton button:hover,
-    .stFormSubmitButton button:hover {
-        background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%) !important;
-        color: #FFFFFF !important;
-    }
-    
-    /* ALERTS / INFO BOXES */
-    [data-testid="stAlert"] {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid rgba(37,99,235,0.2) !important;
-    }
-    [data-testid="stAlert"] * {
-        color: #1F2937 !important;
-    }
-    
-    /* SUCCESS / ERROR / WARNING */
-    .stSuccess, .stSuccess *,
-    .stError, .stError *,
-    .stWarning, .stWarning *,
-    .stInfo, .stInfo * {
-        color: #1F2937 !important;
-    }
-    
-    /* BALLOONS (don't touch) */
-    [data-testid="stBalloons"] { background: transparent !important; }
-    
-    /* SIDEBAR */
-    [data-testid="stSidebar"],
-    [data-testid="stSidebar"] * {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-    }
-    
-    /* SCROLLBAR */
-    ::-webkit-scrollbar { background: #F0F4FF; }
-    ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 10px; }
-    
-    /* SVG icons in header (menu) */
-    [data-testid="stHeader"] button svg { fill: #1F2937 !important; }
-</style>
-""", unsafe_allow_html=True)
-
 # ==================== RESUME LOADER ====================
 def get_resume_download_link(file_path="resumee.pdf"):
+    """Read resumee.pdf and return base64 download link"""
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:
             data = f.read()
@@ -185,15 +20,13 @@ def get_resume_download_link(file_path="resumee.pdf"):
         href = f'<a href="data:application/pdf;base64,{b64}" download="Monika_Jaiswal_Resume.pdf" class="btn-red">📄 Download Resume</a>'
         return href
     else:
-        return '<a href="#" class="btn-red" onclick="alert(\'Resume file not found.\'); return false;">📄 Download Resume</a>'
+        return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
 
-# ==================== MAIN CSS ====================
+# ==================== CSS ====================
 st.markdown("""
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     .stApp { background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%); }
-    
-    /* HEADER */
     .header {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #1E3A8A 100%);
         border-radius: 15px; padding: 40px; margin-bottom: 30px; color: white;
@@ -201,8 +34,6 @@ st.markdown("""
     .name { font-size: 48px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.2; }
     .title { font-size: 20px; color: #DBEAFE; margin-bottom: 15px; }
     .location { color: #BFDBFE; margin-bottom: 20px; }
-    
-    /* BUTTONS */
     .btn-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white !important; padding: 12px 30px; border-radius: 8px;
@@ -226,8 +57,6 @@ st.markdown("""
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white !important; border-color: transparent;
     }
-    
-    /* SECTION TITLE */
     .section-title {
         font-size: 28px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #DC2626 100%);
@@ -235,25 +64,18 @@ st.markdown("""
         margin: 30px 0 20px 0; padding-bottom: 10px;
         border-bottom: 3px solid #DC2626; display: inline-block;
     }
-    
-    /* CARDS */
     .card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; margin-bottom: 20px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;
-        color: #1F2937;
     }
     .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
-    .card p { color: #1F2937; }
-    
-    /* STAT BOX */
     .stat-box {
         background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);
         border-radius: 12px; padding: 20px; text-align: center;
         border-top: 3px solid #1E3A8A;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%;
-        color: #1F2937;
     }
     .stat-number {
         font-size: 32px; font-weight: 700;
@@ -261,66 +83,60 @@ st.markdown("""
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .stat-label { color: #4B5563; margin-top: 5px; }
-    
-    /* EDU CARD */
     .edu-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border-left: 4px solid #DC2626; padding: 20px;
         margin-bottom: 15px; border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        color: #1F2937;
     }
-    .edu-card p { color: #1F2937; }
     .edu-title {
         font-size: 18px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         margin-bottom: 8px;
     }
-    
-    /* SKILL BADGE */
     .skill-badge {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white; padding: 6px 16px; border-radius: 20px;
         display: inline-block; margin: 5px; font-size: 14px; transition: all 0.3s;
     }
     .skill-badge:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
-    
-    /* SERVICE CARD */
     .service-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; text-align: center; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
-        color: #1F2937;
     }
-    .service-card:hover { border-color: #2563EB; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .service-card:hover {
+        border-color: #2563EB; transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
     .service-price {
         font-size: 24px; font-weight: 700;
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         margin: 10px 0;
     }
-    
-    /* PROJECT CARD */
     .project-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
-        color: #1F2937;
     }
-    .project-card:hover { border-color: #DC2626; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-    .project-card p { color: #6B7280; }
+    .project-card:hover {
+        border-color: #DC2626; transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
     .project-tech { color: #DC2626; font-size: 13px; margin: 8px 0; }
     .featured-badge {
         background: linear-gradient(135deg, #10b981, #059669);
         color: white; display: inline-block; padding: 4px 12px;
         border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 8px;
     }
-    
-    /* SOCIAL */
-    .social-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
+    .social-container {
+        display: flex; flex-wrap: wrap; gap: 12px;
+        justify-content: center; margin: 20px 0;
+    }
     .social-btn {
         display: inline-flex; align-items: center; gap: 8px;
         padding: 12px 22px; border-radius: 10px;
@@ -328,29 +144,29 @@ st.markdown("""
         font-weight: 600; font-size: 14px; transition: all 0.3s;
         min-width: 140px; justify-content: center;
     }
-    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); color: white !important; }
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        color: white !important;
+    }
     .social-github { background: linear-gradient(135deg, #24292e, #404448); }
     .social-linkedin { background: linear-gradient(135deg, #0077B5, #00A0DC); }
     .social-instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); }
     .social-fiverr { background: linear-gradient(135deg, #1DBF73, #19A463); }
-    
-    /* CONTACT */
-    .contact-item { padding: 12px; border-bottom: 1px solid rgba(37,99,235,0.1); color: #1F2937; }
+    .contact-item {
+        padding: 12px; border-bottom: 1px solid rgba(37,99,235,0.1);
+        color: #1F2937;
+    }
     .contact-item strong {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    /* FOOTER */
     .footer {
         background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
         color: #9CA3AF; padding: 30px; text-align: center;
         border-radius: 12px; margin-top: 40px;
     }
-    .footer p { color: #9CA3AF; }
-    
     hr { margin: 20px 0; border: none; border-top: 1px solid rgba(37,99,235,0.2); }
-    
     .text-gradient-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -359,8 +175,6 @@ st.markdown("""
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    /* RESPONSIVE */
     @media (max-width: 1024px) {
         .name { font-size: 38px; }
         .title { font-size: 17px; }
@@ -412,7 +226,7 @@ st.markdown(f"""
         </div>
         <div style="text-align: center;">
             <div style="font-size: 80px;">👩‍💻</div>
-            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 10px; color: white;">
+            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 10px;">
                 🔥 Open for Work
             </div>
         </div>
@@ -454,13 +268,12 @@ with col1:
     st.markdown("""
     <div class="card">
         <p style="font-size: 16px; line-height: 1.6;">
-            Motivated and detail-oriented <strong class="text-gradient-blue">MCA graduate</strong> with hands-on experience 
-            in web development and database-driven applications using PHP, Python, Flask, MySQL, HTML, CSS, JavaScript and Bootstrap.
+            Motivated and detail-oriented <strong class="text-gradient-blue">MCA candidate</strong> with a strong foundation 
+            in Computer Applications, backed by a BCA and Diploma in Information Technology.
         </p>
         <p style="margin-top: 15px;">
-            Developed <strong>VBT E-Commerce &amp; Inventory Management System</strong>, 
-            <strong>College Management System</strong> and <strong>E-Learning Platform</strong>. 
-            Familiar with Git/GitHub and responsive web development.
+            Proficient in <strong>PHP, Python, Flask, SQL/MySQL, HTML, CSS, JavaScript, and Bootstrap</strong>, 
+            with hands-on experience developing responsive and user-friendly web applications.
         </p>
         <p style="margin-top: 15px;">
         <strong class="text-gradient-red">🎯 What I Offer:</strong><br>
@@ -471,8 +284,9 @@ with col1:
         </p>
         <p style="margin-top: 15px;">
         <strong class="text-gradient-red">🚀 Career Objective:</strong><br>
-        Seeking an entry-level Web Developer, PHP Developer or Junior Full Stack Developer role 
-        to contribute, learn and grow in a professional environment.
+        To start my career in a growth-oriented organization where I can apply my web development 
+        and programming skills, work on real-world applications, learn from experienced professionals, 
+        and contribute to reliable, user-focused solutions.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -501,11 +315,11 @@ st.markdown('<h2 class="section-title">⚡ Technical Skills</h2>', unsafe_allow_
 
 skill_categories = {
     "Programming": ["Python", "PHP", "JavaScript"],
-    "Backend": ["PHP", "Flask"],
+    "Backend": ["Flask"],
     "Frontend": ["HTML5", "CSS3", "Bootstrap", "JavaScript"],
-    "Database": ["SQL", "MySQL", "SQLite3"],
+    "Database": ["SQL", "MySQL"],
     "Tools": ["Git", "GitHub"],
-    "Development": ["Responsive Design", "Web Apps", "Database Integration", "Testing"]
+    "Development": ["Responsive Design", "Web Apps", "Database Integration"]
 }
 
 for category, skills in skill_categories.items():
@@ -517,20 +331,6 @@ for category, skills in skill_categories.items():
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== EXPERIENCE ====================
-st.markdown('<h2 class="section-title">💼 Experience</h2>', unsafe_allow_html=True)
-
-st.markdown("""
-<div class="edu-card">
-    <div class="edu-title">🏢 Apprenticeship - Softpro India</div>
-    <p><strong>August 2019 - March 2020</strong></p>
-    <p>• Gained practical exposure to software development and project-based work<br>
-    • Worked with web development concepts and contributed to software project activities</p>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
 # ==================== EDUCATION ====================
 st.markdown('<h2 class="section-title">🎓 Education</h2>', unsafe_allow_html=True)
 
@@ -539,12 +339,12 @@ with col1:
     st.markdown("""
     <div class="edu-card">
         <div class="edu-title">🎓 Master of Computer Applications (MCA)</div>
-        <p><strong>IGNOU | 2024 - 2026</strong></p>
+        <p><strong>IGNOU | Pursuing</strong></p>
         <p>• Advanced Computer Applications<br>• Specialization in Web Development</p>
     </div>
     <div class="edu-card">
         <div class="edu-title">📘 Bachelor of Computer Applications (BCA)</div>
-        <p><strong>Jananayak Chandrashekhar University | 2019 - 2022</strong></p>
+        <p><strong>Completed</strong></p>
         <p>• Foundation in Programming &amp; Databases<br>• Web Development Projects</p>
     </div>
     """, unsafe_allow_html=True)
@@ -553,15 +353,15 @@ with col2:
     st.markdown("""
     <div class="edu-card">
         <div class="edu-title">💻 Diploma in Information Technology</div>
-        <p><strong>Govt. Girls Polytechnic Gorakhpur | 2016 - 2019</strong></p>
+        <p><strong>Completed</strong></p>
         <p>• Programming Fundamentals<br>• Foundation of coding &amp; IT concepts</p>
     </div>
     <div class="card">
-        <div class="edu-title" style="font-size: 16px;">📜 Core Strengths</div>
-        <p>✓ PHP &amp; Python Development<br>
-        ✓ SQL/MySQL &amp; Database Integration<br>
-        ✓ Problem-Solving &amp; Testing<br>
-        ✓ Quick Learning &amp; Teamwork</p>
+        <div class="edu-title" style="font-size: 16px;">📜 Additional Strengths</div>
+        <p>✓ Git &amp; GitHub for version control<br>
+        ✓ Responsive Web Development<br>
+        ✓ Freelancing &amp; client-oriented work<br>
+        ✓ Quick learner with strong interest in tech</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -610,17 +410,9 @@ projects = [
         "featured": True
     },
     {
-        "name": "VBT E-Commerce & Inventory Management",
-        "icon": "🛒",
-        "tech": "PHP | MySQL | HTML | CSS | JavaScript | Bootstrap",
-        "desc": "Full-stack e-commerce & inventory management system with frontend, backend, database integration and testing.",
-        "url": "mailto:monikajaiswal200@gmail.com?subject=VBT E-Commerce Project Demo Request",
-        "featured": False
-    },
-    {
         "name": "College Management System",
         "icon": "🏫",
-        "tech": "Python | Flask | SQLite3 | Bootstrap",
+        "tech": "Python | Flask | MySQL | Bootstrap",
         "desc": "Web-based application to manage college information and administrative tasks with structured pages.",
         "url": "https://college-management-system-g3z2.onrender.com",
         "featured": False
@@ -628,9 +420,17 @@ projects = [
     {
         "name": "E-Learning Platform",
         "icon": "📚",
-        "tech": "Python | Flask | SQL | Bootstrap",
+        "tech": "Python | Flask | MySQL | Bootstrap",
         "desc": "E-learning web project for presenting courses and learning content in an organized manner.",
         "url": "https://e-learning-platform-8fei.onrender.com",
+        "featured": False
+    },
+    {
+        "name": "VBT (Full Stack)",
+        "icon": "💼",
+        "tech": "PHP | HTML | CSS | JavaScript | MySQL",
+        "desc": "Full-stack web project with clean structure, responsive styling and functional user interaction.",
+        "url": "mailto:monikajaiswal200@gmail.com?subject=VBT Project Demo Request",
         "featured": False
     }
 ]
@@ -675,7 +475,7 @@ if others:
             </div>
             """, unsafe_allow_html=True)
 
-st.info("💡 **Note:** Please wait for 20-30 seconds. College Management & E-Learning apps Render free tier hosted.")
+st.info("💡 **Note:** College Management & E-Learning apps Render free tier hosted, please wait for 20-30 seconds to open website.")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
