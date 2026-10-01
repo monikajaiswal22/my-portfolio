@@ -1,6 +1,7 @@
 import streamlit as st
 import base64
 import os
+import textwrap
 
 # Page configuration
 st.set_page_config(
@@ -20,357 +21,167 @@ def get_resume_download_link(file_path="resume.pdf"):
         href = f'<a href="data:application/pdf;base64,{b64}" download="Monika_Jaiswal_Resume.pdf" class="btn-red">📄 Download Resume</a>'
         return href
     else:
-        # Fallback if file missing
         return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
 
-# Professional Linear Gradient CSS with Full Responsive Design
-st.markdown("""
+# ==================== CSS ====================
+css = """
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    .stApp {
-        background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%);
-    }
-    
-    /* ========== HEADER ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .stApp { background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%); }
     .header {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #1E3A8A 100%);
-        border-radius: 15px;
-        padding: 40px;
-        margin-bottom: 30px;
-        color: white;
+        border-radius: 15px; padding: 40px; margin-bottom: 30px; color: white;
     }
-    
-    .name {
-        font-size: 48px;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 10px;
-        line-height: 1.2;
-    }
-    
-    .title {
-        font-size: 20px;
-        color: #DBEAFE;
-        margin-bottom: 15px;
-    }
-    
-    .location {
-        color: #BFDBFE;
-        margin-bottom: 20px;
-    }
-    
-    /* ========== BUTTONS ========== */
+    .name { font-size: 48px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.2; }
+    .title { font-size: 20px; color: #DBEAFE; margin-bottom: 15px; }
+    .location { color: #BFDBFE; margin-bottom: 20px; }
     .btn-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        color: white !important;
-        padding: 12px 30px;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 600;
-        margin: 5px 10px 5px 0;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s;
+        color: white !important; padding: 12px 30px; border-radius: 8px;
+        text-decoration: none; display: inline-block; font-weight: 600;
+        margin: 5px 10px 5px 0; border: none; cursor: pointer; transition: all 0.3s;
     }
-    
-    .btn-blue:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-        color: white !important;
-    }
-    
+    .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); color: white !important; }
     .btn-red {
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
-        color: white !important;
-        padding: 12px 30px;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 600;
-        margin: 5px 10px 5px 0;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s;
+        color: white !important; padding: 12px 30px; border-radius: 8px;
+        text-decoration: none; display: inline-block; font-weight: 600;
+        margin: 5px 10px 5px 0; border: none; cursor: pointer; transition: all 0.3s;
     }
-    
-    .btn-red:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(220,38,38,0.3);
-        color: white !important;
-    }
-    
+    .btn-red:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(220,38,38,0.3); color: white !important; }
     .btn-outline {
-        background: transparent;
-        color: #1E3A8A !important;
-        padding: 10px 25px;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 600;
-        border: 2px solid #1E3A8A;
-        transition: all 0.3s;
+        background: transparent; color: #1E3A8A !important; padding: 10px 25px;
+        border-radius: 8px; text-decoration: none; display: inline-block;
+        font-weight: 600; border: 2px solid #1E3A8A; transition: all 0.3s;
     }
-    
     .btn-outline:hover {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        color: white !important;
-        border-color: transparent;
+        color: white !important; border-color: transparent;
     }
-    
-    /* ========== SECTION TITLE ========== */
     .section-title {
-        font-size: 28px;
-        font-weight: 700;
+        font-size: 28px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #DC2626 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 30px 0 20px 0;
-        padding-bottom: 10px;
-        border-bottom: 3px solid #DC2626;
-        display: inline-block;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        margin: 30px 0 20px 0; padding-bottom: 10px;
+        border-bottom: 3px solid #DC2626; display: inline-block;
     }
-    
-    /* ========== CARDS ========== */
     .card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
-        border: 1px solid rgba(37,99,235,0.1);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        transition: all 0.3s;
+        border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
+        padding: 20px; margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;
     }
-    
-    .card:hover {
-        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
-    }
-    
-    /* ========== STAT BOX ========== */
+    .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
     .stat-box {
         background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
+        border-radius: 12px; padding: 20px; text-align: center;
         border-top: 3px solid #1E3A8A;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        height: 100%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%;
     }
-    
     .stat-number {
-        font-size: 32px;
-        font-weight: 700;
+        font-size: 32px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    .stat-label {
-        color: #4B5563;
-        margin-top: 5px;
-    }
-    
-    /* ========== EDUCATION CARD ========== */
+    .stat-label { color: #4B5563; margin-top: 5px; }
     .edu-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
-        border-left: 4px solid #DC2626;
-        padding: 20px;
-        margin-bottom: 15px;
-        border-radius: 8px;
+        border-left: 4px solid #DC2626; padding: 20px;
+        margin-bottom: 15px; border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-    
     .edu-title {
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 18px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         margin-bottom: 8px;
     }
-    
-    /* ========== SKILL BADGE ========== */
     .skill-badge {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        color: white;
-        padding: 6px 16px;
-        border-radius: 20px;
-        display: inline-block;
-        margin: 5px;
-        font-size: 14px;
-        transition: all 0.3s;
+        color: white; padding: 6px 16px; border-radius: 20px;
+        display: inline-block; margin: 5px; font-size: 14px; transition: all 0.3s;
     }
-    
-    .skill-badge:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-    }
-    
-    /* ========== SERVICE CARD ========== */
+    .skill-badge:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
     .service-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
-        border: 1px solid rgba(37,99,235,0.1);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.3s;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        height: 100%;
+        border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
+        padding: 20px; text-align: center; transition: all 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
     }
-    
     .service-card:hover {
-        border-color: #2563EB;
-        transform: translateY(-3px);
+        border-color: #2563EB; transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    
     .service-price {
-        font-size: 24px;
-        font-weight: 700;
+        font-size: 24px; font-weight: 700;
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         margin: 10px 0;
     }
-    
-    /* ========== PROJECT CARD ========== */
     .project-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
-        border: 1px solid rgba(37,99,235,0.1);
-        border-radius: 12px;
-        padding: 20px;
-        transition: all 0.3s;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        height: 100%;
+        border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
+        padding: 20px; transition: all 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
     }
-    
     .project-card:hover {
-        border-color: #DC2626;
-        transform: translateY(-3px);
+        border-color: #DC2626; transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    
-    .project-tech {
-        color: #DC2626;
-        font-size: 13px;
-        margin: 8px 0;
-    }
-    
+    .project-tech { color: #DC2626; font-size: 13px; margin: 8px 0; }
     .featured-badge {
         background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-bottom: 8px;
+        color: white; display: inline-block; padding: 4px 12px;
+        border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 8px;
     }
-    
-    /* ========== SOCIAL LINKS ========== */
     .social-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-        margin: 20px 0;
+        display: flex; flex-wrap: wrap; gap: 12px;
+        justify-content: center; margin: 20px 0;
     }
-    
     .social-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 22px;
-        border-radius: 10px;
-        text-decoration: none;
-        color: white !important;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s;
-        min-width: 140px;
-        justify-content: center;
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 22px; border-radius: 10px;
+        text-decoration: none; color: white !important;
+        font-weight: 600; font-size: 14px; transition: all 0.3s;
+        min-width: 140px; justify-content: center;
     }
-    
     .social-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         color: white !important;
     }
-    
-    .social-github {
-        background: linear-gradient(135deg, #24292e, #404448);
-    }
-    
-    .social-linkedin {
-        background: linear-gradient(135deg, #0077B5, #00A0DC);
-    }
-    
-    .social-instagram {
-        background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);
-    }
-    
-    .social-fiverr {
-        background: linear-gradient(135deg, #1DBF73, #19A463);
-    }
-    
-    /* ========== CONTACT INFO ========== */
+    .social-github { background: linear-gradient(135deg, #24292e, #404448); }
+    .social-linkedin { background: linear-gradient(135deg, #0077B5, #00A0DC); }
+    .social-instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); }
+    .social-fiverr { background: linear-gradient(135deg, #1DBF73, #19A463); }
     .contact-item {
-        padding: 12px;
-        border-bottom: 1px solid rgba(37,99,235,0.1);
+        padding: 12px; border-bottom: 1px solid rgba(37,99,235,0.1);
         color: #1F2937;
     }
-    
     .contact-item strong {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    /* ========== FOOTER ========== */
     .footer {
         background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
-        color: #9CA3AF;
-        padding: 30px;
-        text-align: center;
-        border-radius: 12px;
-        margin-top: 40px;
+        color: #9CA3AF; padding: 30px; text-align: center;
+        border-radius: 12px; margin-top: 40px;
     }
-    
-    hr {
-        margin: 20px 0;
-        border: none;
-        border-top: 1px solid rgba(37,99,235,0.2);
-    }
-    
-    /* ========== TEXT GRADIENTS ========== */
+    hr { margin: 20px 0; border: none; border-top: 1px solid rgba(37,99,235,0.2); }
     .text-gradient-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
     .text-gradient-red {
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    /* ========== RESPONSIVE ========== */
     @media (max-width: 1024px) {
         .name { font-size: 38px; }
         .title { font-size: 17px; }
         .section-title { font-size: 24px; }
         .header { padding: 30px; }
     }
-    
     @media (max-width: 768px) {
         .header { padding: 25px 20px; text-align: center; }
         .name { font-size: 32px; text-align: center; }
@@ -378,15 +189,10 @@ st.markdown("""
         .location { text-align: center; }
         .section-title { font-size: 22px; }
         .stat-number { font-size: 26px; }
-        .btn-blue, .btn-red, .btn-outline {
-            padding: 10px 20px;
-            font-size: 14px;
-            margin: 5px 5px 5px 0;
-        }
+        .btn-blue, .btn-red, .btn-outline { padding: 10px 20px; font-size: 14px; margin: 5px 5px 5px 0; }
         .social-btn { padding: 10px 16px; font-size: 13px; min-width: 120px; }
         .card, .stat-box, .service-card, .project-card { padding: 15px; }
     }
-    
     @media (max-width: 480px) {
         .header { padding: 20px 15px; border-radius: 10px; }
         .name { font-size: 26px; }
@@ -395,31 +201,25 @@ st.markdown("""
         .section-title { font-size: 20px; margin: 20px 0 15px 0; }
         .stat-number { font-size: 22px; }
         .stat-label { font-size: 13px; }
-        .btn-blue, .btn-red, .btn-outline {
-            padding: 8px 16px;
-            font-size: 13px;
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin: 6px 0;
-        }
+        .btn-blue, .btn-red, .btn-outline { padding: 8px 16px; font-size: 13px; display: block; width: 100%; text-align: center; margin: 6px 0; }
         .social-btn { width: 100%; min-width: unset; }
         .skill-badge { font-size: 12px; padding: 5px 12px; }
         .service-price { font-size: 20px; }
         .edu-title { font-size: 16px; }
     }
 </style>
-""", unsafe_allow_html=True)
+"""
+st.markdown(css, unsafe_allow_html=True)
 
-# ==================== HEADER SECTION ====================
+# ==================== HEADER ====================
 resume_link = get_resume_download_link("resume.pdf")
 
-st.markdown(f"""
+header_html = f"""
 <div class="header">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div style="flex: 1; min-width: 250px;">
             <div class="name">Monika Jaiswal</div>
-            <div class="title">💻 Full Stack Web Developer | PHP & Python</div>
+            <div class="title">💻 Full Stack Web Developer | PHP &amp; Python</div>
             <div class="location">📍 India | Available for Remote Work</div>
             <div style="margin-top: 20px;">
                 <a href="mailto:monikajaiswal200@gmail.com?subject=Hire Me - Project Inquiry" class="btn-blue">📞 Hire Me</a>
@@ -434,10 +234,11 @@ st.markdown(f"""
         </div>
     </div>
 </div>
-""", unsafe_allow_html=True)
+"""
+st.markdown(header_html, unsafe_allow_html=True)
 
-# ==================== SOCIAL LINKS (TOP) ====================
-st.markdown("""
+# ==================== SOCIAL LINKS ====================
+social_top = """
 <div style="text-align: center; margin-bottom: 20px;">
     <h3 class="text-gradient-blue" style="font-size: 22px;">🌐 Connect With Me</h3>
 </div>
@@ -447,7 +248,8 @@ st.markdown("""
     <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
     <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
 </div>
-""", unsafe_allow_html=True)
+"""
+st.markdown(social_top, unsafe_allow_html=True)
 
 # ==================== STATS ====================
 col1, col2, col3, col4 = st.columns(4)
@@ -480,7 +282,7 @@ with col1:
         <p style="margin-top: 15px;">
         <strong class="text-gradient-red">🎯 What I Offer:</strong><br>
         ✓ Clean, professional code with documentation<br>
-        ✓ Responsive web development & database integration<br>
+        ✓ Responsive web development &amp; database integration<br>
         ✓ Timely delivery with regular updates<br>
         ✓ Post-delivery support
         </p>
@@ -547,7 +349,7 @@ with col1:
     <div class="edu-card">
         <div class="edu-title">📘 Bachelor of Computer Applications (BCA)</div>
         <p><strong>Completed</strong></p>
-        <p>• Foundation in Programming & Databases<br>• Web Development Projects</p>
+        <p>• Foundation in Programming &amp; Databases<br>• Web Development Projects</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -556,13 +358,13 @@ with col2:
     <div class="edu-card">
         <div class="edu-title">💻 Diploma in Information Technology</div>
         <p><strong>Completed</strong></p>
-        <p>• Programming Fundamentals<br>• Foundation of coding & IT concepts</p>
+        <p>• Programming Fundamentals<br>• Foundation of coding &amp; IT concepts</p>
     </div>
     <div class="card">
         <div class="edu-title" style="font-size: 16px;">📜 Additional Strengths</div>
-        <p>✓ Git & GitHub for version control<br>
+        <p>✓ Git &amp; GitHub for version control<br>
         ✓ Responsive Web Development<br>
-        ✓ Freelancing & client-oriented work<br>
+        ✓ Freelancing &amp; client-oriented work<br>
         ✓ Quick learner with strong interest in tech</p>
     </div>
     """, unsafe_allow_html=True)
@@ -756,7 +558,7 @@ with st.form("contact_form"):
             st.error("❌ Please fill Name, Email and Message fields.")
 
 # ==================== FOOTER ====================
-st.markdown("""
+footer_html = """
 <div class="footer">
     <p>© 2025 Monika Jaiswal | Full Stack Web Developer</p>
     <p>💼 Available for Freelance Work | Let's Build Something Great Together</p>
@@ -775,4 +577,5 @@ st.markdown("""
         </a>
     </p>
 </div>
-""", unsafe_allow_html=True)
+"""
+st.markdown(textwrap.dedent(footer_html), unsafe_allow_html=True)
