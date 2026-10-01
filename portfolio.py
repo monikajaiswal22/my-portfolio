@@ -1,4 +1,6 @@
 import streamlit as st
+import base64
+import os
 
 # Page configuration
 st.set_page_config(
@@ -8,17 +10,28 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# ==================== RESUME LOADER ====================
+def get_resume_download_link(file_path="resume.pdf"):
+    """Read resume.pdf and return base64 download link"""
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as f:
+            data = f.read()
+        b64 = base64.b64encode(data).decode()
+        href = f'<a href="data:application/pdf;base64,{b64}" download="Monika_Jaiswal_Resume.pdf" class="btn-red">📄 Download Resume</a>'
+        return href
+    else:
+        # Fallback if file missing
+        return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
+
 # Professional Linear Gradient CSS with Full Responsive Design
 st.markdown("""
 <style>
-    /* Reset & Base */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
     
-    /* Main Background */
     .stApp {
         background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%);
     }
@@ -350,9 +363,7 @@ st.markdown("""
         -webkit-text-fill-color: transparent;
     }
     
-    /* ========== RESPONSIVE DESIGN ========== */
-    
-    /* Tablet */
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 1024px) {
         .name { font-size: 38px; }
         .title { font-size: 17px; }
@@ -360,71 +371,30 @@ st.markdown("""
         .header { padding: 30px; }
     }
     
-    /* Mobile */
     @media (max-width: 768px) {
-        .header {
-            padding: 25px 20px;
-            text-align: center;
-        }
-        
-        .name {
-            font-size: 32px;
-            text-align: center;
-        }
-        
-        .title {
-            font-size: 15px;
-            text-align: center;
-        }
-        
-        .location {
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: 22px;
-        }
-        
-        .stat-number {
-            font-size: 26px;
-        }
-        
+        .header { padding: 25px 20px; text-align: center; }
+        .name { font-size: 32px; text-align: center; }
+        .title { font-size: 15px; text-align: center; }
+        .location { text-align: center; }
+        .section-title { font-size: 22px; }
+        .stat-number { font-size: 26px; }
         .btn-blue, .btn-red, .btn-outline {
             padding: 10px 20px;
             font-size: 14px;
             margin: 5px 5px 5px 0;
         }
-        
-        .social-btn {
-            padding: 10px 16px;
-            font-size: 13px;
-            min-width: 120px;
-        }
-        
-        .card, .stat-box, .service-card, .project-card {
-            padding: 15px;
-        }
+        .social-btn { padding: 10px 16px; font-size: 13px; min-width: 120px; }
+        .card, .stat-box, .service-card, .project-card { padding: 15px; }
     }
     
-    /* Small Mobile */
     @media (max-width: 480px) {
-        .header {
-            padding: 20px 15px;
-            border-radius: 10px;
-        }
-        
+        .header { padding: 20px 15px; border-radius: 10px; }
         .name { font-size: 26px; }
         .title { font-size: 13px; }
         .location { font-size: 13px; }
-        
-        .section-title {
-            font-size: 20px;
-            margin: 20px 0 15px 0;
-        }
-        
+        .section-title { font-size: 20px; margin: 20px 0 15px 0; }
         .stat-number { font-size: 22px; }
         .stat-label { font-size: 13px; }
-        
         .btn-blue, .btn-red, .btn-outline {
             padding: 8px 16px;
             font-size: 13px;
@@ -433,17 +403,8 @@ st.markdown("""
             text-align: center;
             margin: 6px 0;
         }
-        
-        .social-btn {
-            width: 100%;
-            min-width: unset;
-        }
-        
-        .skill-badge {
-            font-size: 12px;
-            padding: 5px 12px;
-        }
-        
+        .social-btn { width: 100%; min-width: unset; }
+        .skill-badge { font-size: 12px; padding: 5px 12px; }
         .service-price { font-size: 20px; }
         .edu-title { font-size: 16px; }
     }
@@ -451,16 +412,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==================== HEADER SECTION ====================
-st.markdown("""
+resume_link = get_resume_download_link("resume.pdf")
+
+st.markdown(f"""
 <div class="header">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div style="flex: 1; min-width: 250px;">
             <div class="name">Monika Jaiswal</div>
-            <div class="title">💻 Computer Science Student | Software Developer | Freelancer</div>
+            <div class="title">💻 Full Stack Web Developer | PHP & Python</div>
             <div class="location">📍 India | Available for Remote Work</div>
             <div style="margin-top: 20px;">
                 <a href="mailto:monikajaiswal200@gmail.com?subject=Hire Me - Project Inquiry" class="btn-blue">📞 Hire Me</a>
-                <a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>
+                {resume_link}
             </div>
         </div>
         <div style="text-align: center;">
@@ -473,93 +436,59 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ==================== SOCIAL LINKS SECTION ====================
+# ==================== SOCIAL LINKS (TOP) ====================
 st.markdown("""
 <div style="text-align: center; margin-bottom: 20px;">
     <h3 class="text-gradient-blue" style="font-size: 22px;">🌐 Connect With Me</h3>
 </div>
 <div class="social-container">
-    <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">
-        🐙 GitHub
-    </a>
-    <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">
-        💼 LinkedIn
-    </a>
-    <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">
-        📸 Instagram
-    </a>
-    <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">
-        💚 Fiverr
-    </a>
+    <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">🐙 GitHub</a>
+    <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">💼 LinkedIn</a>
+    <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
+    <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
 </div>
 """, unsafe_allow_html=True)
 
-# ==================== STATS SECTION ====================
+# ==================== STATS ====================
 col1, col2, col3, col4 = st.columns(4)
-
 with col1:
-    st.markdown("""
-    <div class="stat-box">
-        <div class="stat-number">3</div>
-        <div class="stat-label">🎓 Qualifications</div>
-        <small>Polytechnic + BCA + MCA</small>
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="stat-box"><div class="stat-number">3</div><div class="stat-label">🎓 Qualifications</div><small>Diploma + BCA + MCA</small></div>', unsafe_allow_html=True)
 with col2:
-    st.markdown("""
-    <div class="stat-box">
-        <div class="stat-number">50+</div>
-        <div class="stat-label">💻 Projects</div>
-        <small>Successfully Completed</small>
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="stat-box"><div class="stat-number">50+</div><div class="stat-label">💻 Projects</div><small>Successfully Completed</small></div>', unsafe_allow_html=True)
 with col3:
-    st.markdown("""
-    <div class="stat-box">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">🤝 Happy Clients</div>
-        <small>Worldwide</small>
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">🤝 Happy Clients</div><small>Worldwide</small></div>', unsafe_allow_html=True)
 with col4:
-    st.markdown("""
-    <div class="stat-box">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">⭐ Satisfaction</div>
-        <small>5 Star Rating</small>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="stat-box"><div class="stat-number">100%</div><div class="stat-label">⭐ Satisfaction</div><small>5 Star Rating</small></div>', unsafe_allow_html=True)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== ABOUT SECTION ====================
-st.markdown('<h2 class="section-title">📖 About Me</h2>', unsafe_allow_html=True)
+# ==================== PROFESSIONAL PROFILE ====================
+st.markdown('<h2 class="section-title">📖 Professional Profile</h2>', unsafe_allow_html=True)
 
 col1, col2 = st.columns([2, 1])
-
 with col1:
     st.markdown("""
     <div class="card">
         <p style="font-size: 16px; line-height: 1.6;">
-            Hello! I'm <strong class="text-gradient-blue">Monika Jaiswal</strong>, a passionate Computer Science student 
-            with a strong foundation in programming and web development.
+            Motivated and detail-oriented <strong class="text-gradient-blue">MCA candidate</strong> with a strong foundation 
+            in Computer Applications, backed by a BCA and Diploma in Information Technology.
         </p>
         <p style="margin-top: 15px;">
-        <strong class="text-gradient-red">🎯 My Journey:</strong><br>
-        ✓ <strong>Polytechnic (CS)</strong> - Started my coding journey<br>
-        ✓ <strong>BCA</strong> - Completed with 85%<br>
-        ✓ <strong>MCA (Current)</strong> - Pursuing to master advanced concepts<br>
-        ✓ <strong>Freelancer</strong> - Helping clients since 2021
+            Proficient in <strong>PHP, Python, Flask, SQL/MySQL, HTML, CSS, JavaScript, and Bootstrap</strong>, 
+            with hands-on experience developing responsive and user-friendly web applications.
         </p>
         <p style="margin-top: 15px;">
-        <strong class="text-gradient-red">💡 What I Offer:</strong><br>
+        <strong class="text-gradient-red">🎯 What I Offer:</strong><br>
         ✓ Clean, professional code with documentation<br>
+        ✓ Responsive web development & database integration<br>
         ✓ Timely delivery with regular updates<br>
-        ✓ Affordable rates for students & startups<br>
         ✓ Post-delivery support
+        </p>
+        <p style="margin-top: 15px;">
+        <strong class="text-gradient-red">🚀 Career Objective:</strong><br>
+        To start my career in a growth-oriented organization where I can apply my web development 
+        and programming skills, work on real-world applications, learn from experienced professionals, 
+        and contribute to reliable, user-focused solutions.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -569,7 +498,7 @@ with col2:
     <div class="card" style="text-align: center;">
         <div style="font-size: 60px;">👩‍🎓</div>
         <h3 class="text-gradient-blue">Monika Jaiswal</h3>
-        <p>CS Student & Developer</p>
+        <p>Full Stack Web Developer</p>
         <hr>
         <div style="text-align: left;">
             <p>📧 <strong>monikajaiswal200@gmail.com</strong></p>
@@ -583,65 +512,72 @@ with col2:
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== EDUCATION SECTION ====================
+# ==================== TECHNICAL SKILLS ====================
+st.markdown('<h2 class="section-title">⚡ Technical Skills</h2>', unsafe_allow_html=True)
+
+skill_categories = {
+    "Programming": ["Python", "PHP", "JavaScript"],
+    "Backend": ["Flask"],
+    "Frontend": ["HTML5", "CSS3", "Bootstrap", "JavaScript"],
+    "Database": ["SQL", "MySQL"],
+    "Tools": ["Git", "GitHub"],
+    "Development": ["Responsive Design", "Web Apps", "Database Integration"]
+}
+
+for category, skills in skill_categories.items():
+    st.markdown(f'<h4 class="text-gradient-red" style="margin-top: 15px;">{category}</h4>', unsafe_allow_html=True)
+    cols = st.columns(4)
+    for i, skill in enumerate(skills):
+        with cols[i % 4]:
+            st.markdown(f'<div class="skill-badge">{skill}</div>', unsafe_allow_html=True)
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+# ==================== EDUCATION ====================
 st.markdown('<h2 class="section-title">🎓 Education</h2>', unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
-
 with col1:
     st.markdown("""
     <div class="edu-card">
         <div class="edu-title">🎓 Master of Computer Applications (MCA)</div>
-        <p><strong>2023 - 2025 | Current Student</strong></p>
-        <p>• CGPA: 8.7/10<br>• Specialization: Full Stack Development<br>• Current Semester: 3rd</p>
+        <p><strong>IGNOU | Pursuing</strong></p>
+        <p>• Advanced Computer Applications<br>• Specialization in Web Development</p>
     </div>
     <div class="edu-card">
         <div class="edu-title">📘 Bachelor of Computer Applications (BCA)</div>
-        <p><strong>2020 - 2023 | Completed</strong></p>
-        <p>• Percentage: 85%<br>• University Rank: Top 15<br>• Best Project Award</p>
+        <p><strong>Completed</strong></p>
+        <p>• Foundation in Programming & Databases<br>• Web Development Projects</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
     <div class="edu-card">
-        <div class="edu-title">💻 Diploma in Computer Science (Polytechnic)</div>
-        <p><strong>2017 - 2020 | Completed</strong></p>
-        <p>• Percentage: 82%<br>• Specialized in Programming<br>• Foundation of coding</p>
+        <div class="edu-title">💻 Diploma in Information Technology</div>
+        <p><strong>Completed</strong></p>
+        <p>• Programming Fundamentals<br>• Foundation of coding & IT concepts</p>
     </div>
     <div class="card">
-        <div class="edu-title" style="font-size: 16px;">📜 Certifications</div>
-        <p>✓ Python for Everybody - Coursera<br>✓ Web Development Bootcamp - Udemy<br>✓ Database Management - NPTEL<br>✓ React Complete Guide</p>
+        <div class="edu-title" style="font-size: 16px;">📜 Additional Strengths</div>
+        <p>✓ Git & GitHub for version control<br>
+        ✓ Responsive Web Development<br>
+        ✓ Freelancing & client-oriented work<br>
+        ✓ Quick learner with strong interest in tech</p>
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== SKILLS SECTION ====================
-st.markdown('<h2 class="section-title">⚡ Technical Skills</h2>', unsafe_allow_html=True)
-
-skills = ["Python", "JavaScript", "Java", "C++", "React", "Django", 
-          "Flask", "MySQL", "MongoDB", "Git", "HTML/CSS", "Bootstrap",
-          "REST API", "Pandas", "NumPy", "Docker"]
-
-for i in range(0, len(skills), 4):
-    cols = st.columns(4)
-    for j in range(4):
-        if i + j < len(skills):
-            with cols[j]:
-                st.markdown(f'<div class="skill-badge">{skills[i + j]}</div>', unsafe_allow_html=True)
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# ==================== SERVICES SECTION ====================
+# ==================== SERVICES ====================
 st.markdown('<h2 class="section-title">💼 Freelance Services</h2>', unsafe_allow_html=True)
 
 services = [
-    {"icon": "🐍", "name": "Python Development", "price": "₹4,999", "desc": "Automation, Scripts, APIs"},
-    {"icon": "🌐", "name": "Web Development", "price": "₹7,999", "desc": "Responsive Websites"},
+    {"icon": "🐍", "name": "Python Development", "price": "₹4,999", "desc": "Flask, Automation, APIs"},
+    {"icon": "🌐", "name": "Web Development", "price": "₹7,999", "desc": "Responsive PHP/Python Websites"},
     {"icon": "📱", "name": "Web Applications", "price": "₹12,999", "desc": "Full-Stack Apps"},
-    {"icon": "🗄️", "name": "Database Design", "price": "₹3,999", "desc": "Optimization & Queries"},
-    {"icon": "🤖", "name": "Chatbot Development", "price": "₹5,999", "desc": "AI Powered Chatbots"},
+    {"icon": "🗄️", "name": "Database Design", "price": "₹3,999", "desc": "MySQL Optimization & Queries"},
+    {"icon": "🎨", "name": "Frontend Design", "price": "₹5,999", "desc": "HTML/CSS/Bootstrap UI"},
     {"icon": "📊", "name": "Data Analysis", "price": "₹4,999", "desc": "Visualization & Reports"}
 ]
 
@@ -663,32 +599,40 @@ for i, service in enumerate(services):
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== PROJECTS SECTION ====================
-st.markdown('<h2 class="section-title">🚀 My Live Projects</h2>', unsafe_allow_html=True)
+# ==================== PROJECTS ====================
+st.markdown('<h2 class="section-title">🚀 My Projects</h2>', unsafe_allow_html=True)
 
 projects = [
     {
         "name": "Portfolio Generator",
         "icon": "🎨",
         "tech": "Streamlit | Python | HTML/CSS | JavaScript",
-        "desc": "Create stunning professional portfolios in minutes. Upload photo, add experience, projects & testimonials with live preview and download.",
+        "desc": "Create stunning professional portfolios in minutes with live preview and download.",
         "url": "https://monikajaiswal22.github.io/portfolio-generator",
         "featured": True
     },
     {
+        "name": "College Management System",
+        "icon": "🏫",
+        "tech": "Python | Flask | MySQL | Bootstrap",
+        "desc": "Web-based application to manage college information and administrative tasks with structured pages.",
+        "url": "https://college-management-system-g3z2.onrender.com",
+        "featured": False
+    },
+    {
         "name": "E-Learning Platform",
         "icon": "📚",
-        "tech": "Django | React | PostgreSQL",
-        "desc": "Online learning platform with video lectures, quizzes, and certificates. Full-stack web application.",
+        "tech": "Python | Flask | MySQL | Bootstrap",
+        "desc": "E-learning web project for presenting courses and learning content in an organized manner.",
         "url": "https://e-learning-platform-8fei.onrender.com",
         "featured": False
     },
     {
-        "name": "College Management System",
-        "icon": "🏫",
-        "tech": "Python | MySQL | Flask",
-        "desc": "Complete management system for student records, fees, attendance, and administration.",
-        "url": "https://college-management-system-g3z2.onrender.com",
+        "name": "VBT (Full Stack)",
+        "icon": "💼",
+        "tech": "PHP | HTML | CSS | JavaScript | MySQL",
+        "desc": "Full-stack web project with clean structure, responsive styling and functional user interaction.",
+        "url": "mailto:monikajaiswal200@gmail.com?subject=VBT Project Demo Request",
         "featured": False
     }
 ]
@@ -706,8 +650,7 @@ for project in featured:
                 <h3 class="text-gradient-blue" style="font-size: 24px; margin-bottom: 5px;">{project['name']}</h3>
                 <div class="project-tech">{project['tech']}</div>
                 <p style="color: #6B7280; margin: 10px 0;">{project['desc']}</p>
-                <a href="{project['url']}" target="_blank" class="btn-blue" 
-                   style="text-decoration: none; display: inline-block;">
+                <a href="{project['url']}" target="_blank" class="btn-blue" style="text-decoration: none; display: inline-block;">
                     🚀 View Live Demo
                 </a>
             </div>
@@ -716,9 +659,10 @@ for project in featured:
     """, unsafe_allow_html=True)
 
 if others:
-    project_cols = st.columns(len(others))
+    project_cols = st.columns(3)
     for i, project in enumerate(others):
-        with project_cols[i]:
+        with project_cols[i % 3]:
+            btn_text = "🔗 Live Demo →" if "http" in project['url'] else "📧 Request Demo →"
             st.markdown(f"""
             <div class="project-card">
                 <div style="font-size: 48px; margin-bottom: 10px;">{project['icon']}</div>
@@ -728,12 +672,12 @@ if others:
                 <a href="{project['url']}" target="_blank" class="btn-outline" 
                    style="padding: 8px 16px; font-size: 13px; text-decoration: none; 
                           display: inline-block; margin-top: 10px;">
-                    🔗 Live Demo →
+                    {btn_text}
                 </a>
             </div>
             """, unsafe_allow_html=True)
 
-st.info("💡 **Note:** E-Learning & College Management apps Render free tier pe hosted hain — pehli visit pe 30-50 seconds lag sakte hain wake up hone me. Agar page load na ho to thodi der baad refresh kar dena.")
+st.info("💡 **Note:** College Management & E-Learning apps Render free tier pe hosted hain — pehli visit pe 30-50 seconds lag sakte hain wake up hone me. Agar load na ho to thodi der baad refresh kar dena.")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -741,14 +685,12 @@ st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown('<h2 class="section-title">✨ Why Choose Me?</h2>', unsafe_allow_html=True)
 
 why_cols = st.columns(4)
-
 why_data = [
     {"icon": "✅", "title": "Quality Work", "desc": "Clean, documented code"},
     {"icon": "⚡", "title": "Fast Delivery", "desc": "On-time delivery"},
     {"icon": "💰", "title": "Affordable", "desc": "Student friendly rates"},
     {"icon": "💬", "title": "24/7 Support", "desc": "Always available"}
 ]
-
 for i, item in enumerate(why_data):
     with why_cols[i]:
         st.markdown(f"""
@@ -761,27 +703,18 @@ for i, item in enumerate(why_data):
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ==================== CONTACT SECTION ====================
+# ==================== CONTACT ====================
 st.markdown('<h2 class="section-title">📬 Contact Me</h2>', unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
-
 with col1:
     st.markdown("""
     <div class="card">
         <h3 class="text-gradient-blue">📞 Get in Touch</h3>
-        <div class="contact-item">
-            📧 <strong>Email:</strong> monikajaiswal200@gmail.com
-        </div>
-        <div class="contact-item">
-            📱 <strong>Phone:</strong> +91 8736019810
-        </div>
-        <div class="contact-item">
-            💬 <strong>WhatsApp:</strong> Available
-        </div>
-        <div class="contact-item">
-            🌍 <strong>Location:</strong> India (Remote)
-        </div>
+        <div class="contact-item">📧 <strong>Email:</strong> monikajaiswal200@gmail.com</div>
+        <div class="contact-item">📱 <strong>Phone:</strong> +91 8736019810</div>
+        <div class="contact-item">💬 <strong>WhatsApp:</strong> Available</div>
+        <div class="contact-item">🌍 <strong>Location:</strong> India (Remote)</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -790,18 +723,10 @@ with col2:
     <div class="card">
         <h3 class="text-gradient-red">🌐 Find Me On</h3>
         <div style="margin-top: 15px;">
-            <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
-                🐙 GitHub - monikajaiswal22
-            </a>
-            <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
-                💼 LinkedIn - Monika Jaiswal
-            </a>
-            <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
-                📸 Instagram - @_coder_girl_mj_
-            </a>
-            <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr" style="width: 100%; box-sizing: border-box;">
-                💚 Fiverr - Hire Me
-            </a>
+            <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">🐙 GitHub - monikajaiswal22</a>
+            <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">💼 LinkedIn - Monika Jaiswal</a>
+            <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">📸 Instagram - @_coder_girl_mj_</a>
+            <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr" style="width: 100%; box-sizing: border-box;">💚 Fiverr - Hire Me</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -816,12 +741,11 @@ with st.form("contact_form"):
         email = st.text_input("Your Email", placeholder="Enter your email")
     with col2:
         service_interest = st.selectbox("I'm interested in", 
-                                        ["Python Development", "Web Development", "Web App", 
-                                         "Database Design", "Chatbot", "Data Analysis", "Other"])
+                                        ["Python Development", "PHP Development", "Web Development", 
+                                         "Web App", "Database Design", "Frontend Design", "Other"])
         phone = st.text_input("Phone (Optional)", placeholder="Enter your phone")
     
     message = st.text_area("Message", placeholder="Tell me about your project...", height=120)
-    
     submitted = st.form_submit_button("📩 Send Message", use_container_width=True)
     
     if submitted:
@@ -834,7 +758,7 @@ with st.form("contact_form"):
 # ==================== FOOTER ====================
 st.markdown("""
 <div class="footer">
-    <p>© 2025 Monika Jaiswal | Computer Science Student & Software Developer</p>
+    <p>© 2025 Monika Jaiswal | Full Stack Web Developer</p>
     <p>💼 Available for Freelance Work | Let's Build Something Great Together</p>
     <p style="margin-top: 10px;">📧 monikajaiswal200@gmail.com | 📱 +91 8736019810</p>
     
@@ -846,8 +770,7 @@ st.markdown("""
     </div>
     
     <p style="margin-top: 20px;">
-        <a href="https://monikajaiswal22.github.io/portfolio-generator" target="_blank" 
-           style="color: #9CA3AF; text-decoration: none;">
+        <a href="https://monikajaiswal22.github.io/portfolio-generator" target="_blank" style="color: #9CA3AF; text-decoration: none;">
             🎨 Try my Portfolio Generator Tool →
         </a>
     </p>
