@@ -59,7 +59,7 @@ st.markdown("""
     /* Button Styles */
     .btn-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        color: white;
+        color: white !important;
         padding: 12px 30px;
         border-radius: 8px;
         text-decoration: none;
@@ -74,11 +74,12 @@ st.markdown("""
     .btn-blue:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        color: white !important;
     }
     
     .btn-red {
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
-        color: white;
+        color: white !important;
         padding: 12px 30px;
         border-radius: 8px;
         text-decoration: none;
@@ -92,11 +93,12 @@ st.markdown("""
     .btn-red:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+        color: white !important;
     }
     
     .btn-outline {
         background: transparent;
-        color: #1E3A8A;
+        color: #1E3A8A !important;
         padding: 10px 25px;
         border-radius: 8px;
         text-decoration: none;
@@ -108,7 +110,7 @@ st.markdown("""
     
     .btn-outline:hover {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        color: white;
+        color: white !important;
         border-color: transparent;
     }
     
@@ -125,7 +127,7 @@ st.markdown("""
         display: inline-block;
     }
     
-    /* Card Styles - White with Soft Shadow */
+    /* Card Styles */
     .card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1);
@@ -234,6 +236,7 @@ st.markdown("""
         padding: 20px;
         transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        height: 100%;
     }
     
     .project-card:hover {
@@ -246,6 +249,17 @@ st.markdown("""
         color: #DC2626;
         font-size: 13px;
         margin: 8px 0;
+    }
+    
+    .featured-badge {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 8px;
     }
     
     /* Contact Info */
@@ -301,8 +315,8 @@ st.markdown("""
             <div class="title">💻 Computer Science Student | Software Developer | Freelancer</div>
             <div class="location">📍 India | Available for Remote Work</div>
             <div style="margin-top: 20px;">
-                <button class="btn-blue" onclick="alert('Contact: monikajaiswal200@gmail.com')">📞 Hire Me</button>
-                <button class="btn-red" onclick="alert('Resume download link will be shared')">📄 Download Resume</button>
+                <a href="mailto:monikajaiswal200@gmail.com?subject=Hire Me - Project Inquiry" class="btn-blue">📞 Hire Me</a>
+                <a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>
             </div>
         </div>
         <div style="text-align: center;">
@@ -470,45 +484,94 @@ services = [
 service_cols = st.columns(3)
 for i, service in enumerate(services):
     with service_cols[i % 3]:
+        mailto = f"mailto:monikajaiswal200@gmail.com?subject=Inquiry about {service['name']}&body=Hi Monika,%0D%0A%0D%0AI'm interested in your {service['name']} service."
         st.markdown(f"""
         <div class="service-card">
             <div style="font-size: 40px;">{service['icon']}</div>
             <h3 class="text-gradient-blue">{service['name']}</h3>
             <div class="service-price">{service['price']}</div>
             <p style="color: #6B7280;">{service['desc']}</p>
-            <button class="btn-outline" style="padding: 6px 15px; font-size: 13px; width: 100%;" 
-                    onclick="alert('Contact monikajaiswal200@gmail.com for {service['name']}')">
+            <a href="{mailto}" class="btn-outline" style="padding: 6px 15px; font-size: 13px; width: 100%; display: inline-block; text-align: center; box-sizing: border-box;">
                 Get Quote →
-            </button>
+            </a>
         </div>
         """, unsafe_allow_html=True)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # ==================== PROJECTS SECTION ====================
-st.markdown('<h2 class="section-title">🚀 My Projects</h2>', unsafe_allow_html=True)
+st.markdown('<h2 class="section-title">🚀 My Live Projects</h2>', unsafe_allow_html=True)
 
 projects = [
-    {"name": "E-Learning Platform", "tech": "Django, React, PostgreSQL", "desc": "Online learning with video lectures, quizzes & certificates"},
-    {"name": "College Management System", "tech": "Python, MySQL", "desc": "Manage student records, fees, attendance"},
-    {"name": "Portfolio Generator", "tech": "Streamlit, Python", "desc": "Create professional portfolios in minutes"},
-    {"name": "Chatbot Assistant", "tech": "Python, NLP, Flask", "desc": "AI-powered customer support chatbot"},
-    {"name": "Freelance Manager", "tech": "Flask, MongoDB", "desc": "Manage projects, clients & payments"},
-    {"name": "Data Dashboard", "tech": "Streamlit, Pandas", "desc": "Interactive data visualization dashboard"}
+    {
+        "name": "Portfolio Generator",
+        "icon": "🎨",
+        "tech": "Streamlit | Python | HTML/CSS | JavaScript",
+        "desc": "Create stunning professional portfolios in minutes. Upload photo, add experience, projects & testimonials with live preview and download.",
+        "url": "https://monikajaiswal22.github.io/portfolio-generator",
+        "featured": True
+    },
+    {
+        "name": "E-Learning Platform",
+        "icon": "📚",
+        "tech": "Django | React | PostgreSQL",
+        "desc": "Online learning platform with video lectures, quizzes, and certificates. Full-stack web application.",
+        "url": "https://e-learning-platform-8fei.onrender.com",
+        "featured": False
+    },
+    {
+        "name": "College Management System",
+        "icon": "🏫",
+        "tech": "Python | MySQL | Flask",
+        "desc": "Complete management system for student records, fees, attendance, and administration.",
+        "url": "https://college-management-system-g3z2.onrender.com",
+        "featured": False
+    }
 ]
 
-project_cols = st.columns(3)
-for i, project in enumerate(projects):
-    with project_cols[i % 3]:
-        st.markdown(f"""
-        <div class="project-card">
-            <div style="font-size: 24px; margin-bottom: 10px;">📁</div>
-            <h4 class="text-gradient-blue">{project['name']}</h4>
-            <div class="project-tech">{project['tech']}</div>
-            <p style="color: #6B7280; font-size: 14px;">{project['desc']}</p>
-            <button class="btn-outline" style="padding: 4px 12px; font-size: 12px;">View Details →</button>
+# Featured project (full width)
+featured = [p for p in projects if p.get("featured")]
+others = [p for p in projects if not p.get("featured")]
+
+for project in featured:
+    st.markdown(f"""
+    <div class="project-card" style="border: 2px solid #10b981; margin-bottom: 25px;">
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="font-size: 60px;">{project['icon']}</div>
+            <div style="flex: 1;">
+                <div class="featured-badge">⭐ Featured Project</div>
+                <h3 class="text-gradient-blue" style="font-size: 24px; margin-bottom: 5px;">{project['name']}</h3>
+                <div class="project-tech">{project['tech']}</div>
+                <p style="color: #6B7280; margin: 10px 0;">{project['desc']}</p>
+                <a href="{project['url']}" target="_blank" class="btn-blue" 
+                   style="text-decoration: none; display: inline-block;">
+                    🚀 View Live Demo
+                </a>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
+
+# Other projects in 2 columns
+if others:
+    project_cols = st.columns(len(others))
+    for i, project in enumerate(others):
+        with project_cols[i]:
+            st.markdown(f"""
+            <div class="project-card">
+                <div style="font-size: 48px; margin-bottom: 10px;">{project['icon']}</div>
+                <h4 class="text-gradient-blue">{project['name']}</h4>
+                <div class="project-tech">{project['tech']}</div>
+                <p style="color: #6B7280; font-size: 14px; min-height: 70px;">{project['desc']}</p>
+                <a href="{project['url']}" target="_blank" class="btn-outline" 
+                   style="padding: 8px 16px; font-size: 13px; text-decoration: none; 
+                          display: inline-block; margin-top: 10px;">
+                    🔗 Live Demo →
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
+
+st.info("💡 **Note:** E-Learning & College Management apps Render free tier pe hosted hain — pehli visit pe 30-50 seconds lag sakte hain wake up hone me. Agar page load na ho to thodi der baad refresh kar dena.")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -561,7 +624,7 @@ with col1:
         <h3 class="text-gradient-red">🌐 Find Me On</h3>
         <div class="contact-item">
             🔗 <strong>LinkedIn:</strong> /in/monika-jaiswal<br>
-            🐙 <strong>GitHub:</strong> /monikajaiswal<br>
+            🐙 <strong>GitHub:</strong> /monikajaiswal22<br>
             📸 <strong>Instagram:</strong> @monika_codes
         </div>
     </div>
@@ -580,14 +643,23 @@ with col2:
         submitted = st.form_submit_button("Send Message", use_container_width=True)
         
         if submitted:
-            st.success("✅ Message sent! I'll reply within 24 hours.")
-            st.balloons()
+            if name and email and message:
+                st.success("✅ Message sent! I'll reply within 24 hours.")
+                st.balloons()
+            else:
+                st.error("❌ Please fill all fields before sending.")
 
 # ==================== FOOTER ====================
 st.markdown("""
 <div class="footer">
-    <p>© 2024 Monika Jaiswal | Computer Science Student & Software Developer</p>
+    <p>© 2025 Monika Jaiswal | Computer Science Student & Software Developer</p>
     <p>💼 Available for Freelance Work | Let's Build Something Great Together</p>
     <p style="margin-top: 10px;">📧 monikajaiswal200@gmail.com | 📱 +91 8736019810</p>
+    <p style="margin-top: 10px;">
+        <a href="https://monikajaiswal22.github.io/portfolio-generator" target="_blank" 
+           style="color: #9CA3AF; text-decoration: none;">
+            🎨 Try my Portfolio Generator Tool →
+        </a>
+    </p>
 </div>
 """, unsafe_allow_html=True)
