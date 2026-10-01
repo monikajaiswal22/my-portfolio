@@ -1,7 +1,6 @@
 import streamlit as st
 import base64
 import os
-import textwrap
 
 # Page configuration
 st.set_page_config(
@@ -24,7 +23,7 @@ def get_resume_download_link(file_path="resumee.pdf"):
         return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
 
 # ==================== CSS ====================
-css = """
+st.markdown("""
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     .stApp { background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%); }
@@ -208,13 +207,12 @@ css = """
         .edu-title { font-size: 16px; }
     }
 </style>
-"""
-st.markdown(css, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ==================== HEADER ====================
 resume_link = get_resume_download_link("resume.pdf")
 
-header_html = f"""
+st.markdown(f"""
 <div class="header">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div style="flex: 1; min-width: 250px;">
@@ -234,11 +232,10 @@ header_html = f"""
         </div>
     </div>
 </div>
-"""
-st.markdown(header_html, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-# ==================== SOCIAL LINKS ====================
-social_top = """
+# ==================== SOCIAL LINKS TOP ====================
+st.markdown("""
 <div style="text-align: center; margin-bottom: 20px;">
     <h3 class="text-gradient-blue" style="font-size: 22px;">🌐 Connect With Me</h3>
 </div>
@@ -248,8 +245,7 @@ social_top = """
     <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
     <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
 </div>
-"""
-st.markdown(social_top, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ==================== STATS ====================
 col1, col2, col3, col4 = st.columns(4)
@@ -558,24 +554,21 @@ with st.form("contact_form"):
             st.error("❌ Please fill Name, Email and Message fields.")
 
 # ==================== FOOTER ====================
-footer_html = """
+st.markdown("""
 <div class="footer">
     <p>© 2025 Monika Jaiswal | Full Stack Web Developer</p>
     <p>💼 Available for Freelance Work | Let's Build Something Great Together</p>
     <p style="margin-top: 10px;">📧 monikajaiswal200@gmail.com | 📱 +91 8736019810</p>
-    
     <div class="social-container" style="margin-top: 20px;">
         <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">🐙 GitHub</a>
         <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">💼 LinkedIn</a>
         <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
         <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
     </div>
-    
     <p style="margin-top: 20px;">
         <a href="https://monikajaiswal22.github.io/portfolio-generator" target="_blank" style="color: #9CA3AF; text-decoration: none;">
             🎨 Try my Portfolio Generator Tool →
         </a>
     </p>
 </div>
-"""
-st.markdown(textwrap.dedent(footer_html), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
