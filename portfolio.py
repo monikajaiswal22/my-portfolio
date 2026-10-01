@@ -475,8 +475,6 @@ if others:
             </div>
             """, unsafe_allow_html=True)
 
-st.info("💡 **Note:** College Management & E-Learning apps Render free tier pe hosted hain — pehli visit pe 30-50 seconds lag sakte hain wake up hone me. Agar load na ho to thodi der baad refresh kar dena.")
-
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # ==================== WHY HIRE ME ====================
