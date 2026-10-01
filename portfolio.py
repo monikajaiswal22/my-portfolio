@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-# ==================== PAGE CONFIG ====================
+# Page configuration
 st.set_page_config(
     page_title="Monika Jaiswal | Portfolio",
     page_icon="💼",
@@ -10,53 +10,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== FORCE LIGHT THEME ====================
+# ==================== FORCE LIGHT (hide dark toggles) ====================
 st.markdown("""
 <style>
-    /* Force light background everywhere */
-    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    /* Hide Streamlit's dark/light theme toggle & menu */
+    [data-testid="stToolbar"] { display: none !important; }
+    [data-testid="stDecoration"] { display: none !important; }
+    [data-testid="stStatusWidget"] { display: none !important; }
+    #MainMenu { visibility: hidden !important; }
+    header { visibility: hidden !important; }
+    footer { visibility: hidden !important; }
+    
+    /* Force light on all containers */
+    .stApp, [data-testid="stAppViewContainer"] {
         background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%) !important;
-        color: #1F2937 !important;
-    }
-    
-    [data-testid="stHeader"] {
-        background: transparent !important;
-    }
-    
-    /* Force light text */
-    .stApp p, .stApp span, .stApp label, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4 {
-        color: #1F2937;
-    }
-    
-    /* Sidebar */
-    [data-testid="stSidebar"] {
-        background: #FFFFFF !important;
-    }
-    
-    /* Input fields */
-    .stTextInput input, .stTextArea textarea, .stSelectbox select {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid rgba(37,99,235,0.2) !important;
-    }
-    
-    /* Form */
-    [data-testid="stForm"] {
-        background: #FFFFFF !important;
-        border: 1px solid rgba(37,99,235,0.1) !important;
-        border-radius: 12px;
-        padding: 20px;
-    }
-    
-    /* Header icons (menu) */
-    [data-testid="stHeader"] button svg {
-        fill: #1F2937 !important;
-    }
-    
-    /* Info / Success / Error boxes */
-    [data-testid="stAlert"] {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -77,10 +44,9 @@ def get_resume_download_link(file_path="resumee.pdf"):
 st.markdown("""
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
     .stApp { background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%); }
     
-    /* ========== HEADER ========== */
+    /* HEADER */
     .header {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #1E3A8A 100%);
         border-radius: 15px; padding: 40px; margin-bottom: 30px; color: white;
@@ -89,7 +55,7 @@ st.markdown("""
     .title { font-size: 20px; color: #DBEAFE; margin-bottom: 15px; }
     .location { color: #BFDBFE; margin-bottom: 20px; }
     
-    /* ========== BUTTONS ========== */
+    /* BUTTONS */
     .btn-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white !important; padding: 12px 30px; border-radius: 8px;
@@ -97,7 +63,6 @@ st.markdown("""
         margin: 5px 10px 5px 0; border: none; cursor: pointer; transition: all 0.3s;
     }
     .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); color: white !important; }
-    
     .btn-red {
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
         color: white !important; padding: 12px 30px; border-radius: 8px;
@@ -105,7 +70,6 @@ st.markdown("""
         margin: 5px 10px 5px 0; border: none; cursor: pointer; transition: all 0.3s;
     }
     .btn-red:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(220,38,38,0.3); color: white !important; }
-    
     .btn-outline {
         background: transparent; color: #1E3A8A !important; padding: 10px 25px;
         border-radius: 8px; text-decoration: none; display: inline-block;
@@ -116,7 +80,7 @@ st.markdown("""
         color: white !important; border-color: transparent;
     }
     
-    /* ========== SECTION TITLE ========== */
+    /* SECTION TITLE */
     .section-title {
         font-size: 28px; font-weight: 700;
         background: linear-gradient(135deg, #1E3A8A 0%, #DC2626 100%);
@@ -125,7 +89,7 @@ st.markdown("""
         border-bottom: 3px solid #DC2626; display: inline-block;
     }
     
-    /* ========== CARDS ========== */
+    /* CARDS */
     .card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
@@ -134,7 +98,7 @@ st.markdown("""
     }
     .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
     
-    /* ========== STAT BOX ========== */
+    /* STAT BOX */
     .stat-box {
         background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);
         border-radius: 12px; padding: 20px; text-align: center;
@@ -148,7 +112,7 @@ st.markdown("""
     }
     .stat-label { color: #4B5563; margin-top: 5px; }
     
-    /* ========== EDUCATION ========== */
+    /* EDU CARD */
     .edu-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border-left: 4px solid #DC2626; padding: 20px;
@@ -162,7 +126,7 @@ st.markdown("""
         margin-bottom: 8px;
     }
     
-    /* ========== SKILL BADGE ========== */
+    /* SKILL BADGE */
     .skill-badge {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white; padding: 6px 16px; border-radius: 20px;
@@ -170,17 +134,14 @@ st.markdown("""
     }
     .skill-badge:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
     
-    /* ========== SERVICE CARD ========== */
+    /* SERVICE CARD */
     .service-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; text-align: center; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
     }
-    .service-card:hover {
-        border-color: #2563EB; transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
+    .service-card:hover { border-color: #2563EB; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
     .service-price {
         font-size: 24px; font-weight: 700;
         background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
@@ -188,17 +149,14 @@ st.markdown("""
         margin: 10px 0;
     }
     
-    /* ========== PROJECT CARD ========== */
+    /* PROJECT CARD */
     .project-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1); border-radius: 12px;
         padding: 20px; transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; height: 100%;
     }
-    .project-card:hover {
-        border-color: #DC2626; transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
+    .project-card:hover { border-color: #DC2626; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
     .project-tech { color: #DC2626; font-size: 13px; margin: 8px 0; }
     .featured-badge {
         background: linear-gradient(135deg, #10b981, #059669);
@@ -206,11 +164,8 @@ st.markdown("""
         border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 8px;
     }
     
-    /* ========== SOCIAL ========== */
-    .social-container {
-        display: flex; flex-wrap: wrap; gap: 12px;
-        justify-content: center; margin: 20px 0;
-    }
+    /* SOCIAL */
+    .social-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
     .social-btn {
         display: inline-flex; align-items: center; gap: 8px;
         padding: 12px 22px; border-radius: 10px;
@@ -218,33 +173,25 @@ st.markdown("""
         font-weight: 600; font-size: 14px; transition: all 0.3s;
         min-width: 140px; justify-content: center;
     }
-    .social-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        color: white !important;
-    }
+    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); color: white !important; }
     .social-github { background: linear-gradient(135deg, #24292e, #404448); }
     .social-linkedin { background: linear-gradient(135deg, #0077B5, #00A0DC); }
     .social-instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); }
     .social-fiverr { background: linear-gradient(135deg, #1DBF73, #19A463); }
     
-    /* ========== CONTACT ========== */
-    .contact-item {
-        padding: 12px; border-bottom: 1px solid rgba(37,99,235,0.1);
-        color: #1F2937;
-    }
+    /* CONTACT */
+    .contact-item { padding: 12px; border-bottom: 1px solid rgba(37,99,235,0.1); color: #1F2937; }
     .contact-item strong {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     
-    /* ========== FOOTER ========== */
+    /* FOOTER */
     .footer {
         background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
         color: #9CA3AF; padding: 30px; text-align: center;
         border-radius: 12px; margin-top: 40px;
     }
-    
     hr { margin: 20px 0; border: none; border-top: 1px solid rgba(37,99,235,0.2); }
     
     .text-gradient-blue {
@@ -256,7 +203,7 @@ st.markdown("""
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     
-    /* ========== RESPONSIVE ========== */
+    /* RESPONSIVE */
     @media (max-width: 1024px) {
         .name { font-size: 38px; }
         .title { font-size: 17px; }
