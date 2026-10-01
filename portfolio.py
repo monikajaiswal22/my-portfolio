@@ -4,10 +4,11 @@ import streamlit as st
 st.set_page_config(
     page_title="Monika Jaiswal | Portfolio",
     page_icon="💼",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-# Professional Linear Gradient CSS
+# Professional Linear Gradient CSS with Full Responsive Design
 st.markdown("""
 <style>
     /* Reset & Base */
@@ -17,19 +18,12 @@ st.markdown("""
         box-sizing: border-box;
     }
     
-    /* Main Background - Soft Linear Gradient */
+    /* Main Background */
     .stApp {
         background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 50%, #FFFFFF 100%);
     }
     
-    /* Container */
-    .main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    /* Header Section - Blue Gradient */
+    /* ========== HEADER ========== */
     .header {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #1E3A8A 100%);
         border-radius: 15px;
@@ -43,6 +37,7 @@ st.markdown("""
         font-weight: 700;
         color: white;
         margin-bottom: 10px;
+        line-height: 1.2;
     }
     
     .title {
@@ -56,7 +51,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
-    /* Button Styles */
+    /* ========== BUTTONS ========== */
     .btn-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white !important;
@@ -65,7 +60,7 @@ st.markdown("""
         text-decoration: none;
         display: inline-block;
         font-weight: 600;
-        margin-right: 15px;
+        margin: 5px 10px 5px 0;
         border: none;
         cursor: pointer;
         transition: all 0.3s;
@@ -85,6 +80,7 @@ st.markdown("""
         text-decoration: none;
         display: inline-block;
         font-weight: 600;
+        margin: 5px 10px 5px 0;
         border: none;
         cursor: pointer;
         transition: all 0.3s;
@@ -114,7 +110,7 @@ st.markdown("""
         border-color: transparent;
     }
     
-    /* Section Title */
+    /* ========== SECTION TITLE ========== */
     .section-title {
         font-size: 28px;
         font-weight: 700;
@@ -127,7 +123,7 @@ st.markdown("""
         display: inline-block;
     }
     
-    /* Card Styles */
+    /* ========== CARDS ========== */
     .card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1);
@@ -143,7 +139,7 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* Stat Box */
+    /* ========== STAT BOX ========== */
     .stat-box {
         background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);
         border-radius: 12px;
@@ -151,6 +147,7 @@ st.markdown("""
         text-align: center;
         border-top: 3px solid #1E3A8A;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        height: 100%;
     }
     
     .stat-number {
@@ -166,7 +163,7 @@ st.markdown("""
         margin-top: 5px;
     }
     
-    /* Education Card */
+    /* ========== EDUCATION CARD ========== */
     .edu-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border-left: 4px solid #DC2626;
@@ -185,7 +182,7 @@ st.markdown("""
         margin-bottom: 8px;
     }
     
-    /* Skill Badge */
+    /* ========== SKILL BADGE ========== */
     .skill-badge {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         color: white;
@@ -202,7 +199,7 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(37,99,235,0.3);
     }
     
-    /* Service Card */
+    /* ========== SERVICE CARD ========== */
     .service-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1);
@@ -211,6 +208,8 @@ st.markdown("""
         text-align: center;
         transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        height: 100%;
     }
     
     .service-card:hover {
@@ -228,7 +227,7 @@ st.markdown("""
         margin: 10px 0;
     }
     
-    /* Project Card */
+    /* ========== PROJECT CARD ========== */
     .project-card {
         background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
         border: 1px solid rgba(37,99,235,0.1);
@@ -236,6 +235,7 @@ st.markdown("""
         padding: 20px;
         transition: all 0.3s;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
         height: 100%;
     }
     
@@ -262,7 +262,53 @@ st.markdown("""
         margin-bottom: 8px;
     }
     
-    /* Contact Info */
+    /* ========== SOCIAL LINKS ========== */
+    .social-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white !important;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s;
+        min-width: 140px;
+        justify-content: center;
+    }
+    
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        color: white !important;
+    }
+    
+    .social-github {
+        background: linear-gradient(135deg, #24292e, #404448);
+    }
+    
+    .social-linkedin {
+        background: linear-gradient(135deg, #0077B5, #00A0DC);
+    }
+    
+    .social-instagram {
+        background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);
+    }
+    
+    .social-fiverr {
+        background: linear-gradient(135deg, #1DBF73, #19A463);
+    }
+    
+    /* ========== CONTACT INFO ========== */
     .contact-item {
         padding: 12px;
         border-bottom: 1px solid rgba(37,99,235,0.1);
@@ -275,7 +321,7 @@ st.markdown("""
         -webkit-text-fill-color: transparent;
     }
     
-    /* Footer */
+    /* ========== FOOTER ========== */
     .footer {
         background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
         color: #9CA3AF;
@@ -291,7 +337,7 @@ st.markdown("""
         border-top: 1px solid rgba(37,99,235,0.2);
     }
     
-    /* Text Colors */
+    /* ========== TEXT GRADIENTS ========== */
     .text-gradient-blue {
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         -webkit-background-clip: text;
@@ -303,14 +349,112 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    
+    /* ========== RESPONSIVE DESIGN ========== */
+    
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .name { font-size: 38px; }
+        .title { font-size: 17px; }
+        .section-title { font-size: 24px; }
+        .header { padding: 30px; }
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+        .header {
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .name {
+            font-size: 32px;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 15px;
+            text-align: center;
+        }
+        
+        .location {
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 22px;
+        }
+        
+        .stat-number {
+            font-size: 26px;
+        }
+        
+        .btn-blue, .btn-red, .btn-outline {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .social-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            min-width: 120px;
+        }
+        
+        .card, .stat-box, .service-card, .project-card {
+            padding: 15px;
+        }
+    }
+    
+    /* Small Mobile */
+    @media (max-width: 480px) {
+        .header {
+            padding: 20px 15px;
+            border-radius: 10px;
+        }
+        
+        .name { font-size: 26px; }
+        .title { font-size: 13px; }
+        .location { font-size: 13px; }
+        
+        .section-title {
+            font-size: 20px;
+            margin: 20px 0 15px 0;
+        }
+        
+        .stat-number { font-size: 22px; }
+        .stat-label { font-size: 13px; }
+        
+        .btn-blue, .btn-red, .btn-outline {
+            padding: 8px 16px;
+            font-size: 13px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin: 6px 0;
+        }
+        
+        .social-btn {
+            width: 100%;
+            min-width: unset;
+        }
+        
+        .skill-badge {
+            font-size: 12px;
+            padding: 5px 12px;
+        }
+        
+        .service-price { font-size: 20px; }
+        .edu-title { font-size: 16px; }
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # ==================== HEADER SECTION ====================
 st.markdown("""
 <div class="header">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <div>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 250px;">
             <div class="name">Monika Jaiswal</div>
             <div class="title">💻 Computer Science Student | Software Developer | Freelancer</div>
             <div class="location">📍 India | Available for Remote Work</div>
@@ -326,6 +470,27 @@ st.markdown("""
             </div>
         </div>
     </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ==================== SOCIAL LINKS SECTION ====================
+st.markdown("""
+<div style="text-align: center; margin-bottom: 20px;">
+    <h3 class="text-gradient-blue" style="font-size: 22px;">🌐 Connect With Me</h3>
+</div>
+<div class="social-container">
+    <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">
+        🐙 GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">
+        💼 LinkedIn
+    </a>
+    <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">
+        📸 Instagram
+    </a>
+    <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">
+        💚 Fiverr
+    </a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -459,7 +624,6 @@ skills = ["Python", "JavaScript", "Java", "C++", "React", "Django",
           "Flask", "MySQL", "MongoDB", "Git", "HTML/CSS", "Bootstrap",
           "REST API", "Pandas", "NumPy", "Docker"]
 
-# Display skills in rows
 for i in range(0, len(skills), 4):
     cols = st.columns(4)
     for j in range(4):
@@ -529,16 +693,15 @@ projects = [
     }
 ]
 
-# Featured project (full width)
 featured = [p for p in projects if p.get("featured")]
 others = [p for p in projects if not p.get("featured")]
 
 for project in featured:
     st.markdown(f"""
-    <div class="project-card" style="border: 2px solid #10b981; margin-bottom: 25px;">
+    <div class="project-card" style="border: 2px solid #10b981;">
         <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
             <div style="font-size: 60px;">{project['icon']}</div>
-            <div style="flex: 1;">
+            <div style="flex: 1; min-width: 250px;">
                 <div class="featured-badge">⭐ Featured Project</div>
                 <h3 class="text-gradient-blue" style="font-size: 24px; margin-bottom: 5px;">{project['name']}</h3>
                 <div class="project-tech">{project['tech']}</div>
@@ -552,7 +715,6 @@ for project in featured:
     </div>
     """, unsafe_allow_html=True)
 
-# Other projects in 2 columns
 if others:
     project_cols = st.columns(len(others))
     for i, project in enumerate(others):
@@ -590,7 +752,7 @@ why_data = [
 for i, item in enumerate(why_data):
     with why_cols[i]:
         st.markdown(f"""
-        <div class="stat-box" style="height: 100%;">
+        <div class="stat-box">
             <div style="font-size: 32px;">{item['icon']}</div>
             <div class="stat-number" style="font-size: 20px;">{item['title']}</div>
             <div class="stat-label">{item['desc']}</div>
@@ -620,34 +782,54 @@ with col1:
         <div class="contact-item">
             🌍 <strong>Location:</strong> India (Remote)
         </div>
-        <hr>
-        <h3 class="text-gradient-red">🌐 Find Me On</h3>
-        <div class="contact-item">
-            🔗 <strong>LinkedIn:</strong> /in/monika-jaiswal<br>
-            🐙 <strong>GitHub:</strong> /monikajaiswal22<br>
-            📸 <strong>Instagram:</strong> @monika_codes
-        </div>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
-    with st.form("contact_form"):
-        st.markdown("### ✉️ Send a Message")
+    st.markdown("""
+    <div class="card">
+        <h3 class="text-gradient-red">🌐 Find Me On</h3>
+        <div style="margin-top: 15px;">
+            <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
+                🐙 GitHub - monikajaiswal22
+            </a>
+            <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
+                💼 LinkedIn - Monika Jaiswal
+            </a>
+            <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">
+                📸 Instagram - @_coder_girl_mj_
+            </a>
+            <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr" style="width: 100%; box-sizing: border-box;">
+                💚 Fiverr - Hire Me
+            </a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ==================== CONTACT FORM ====================
+st.markdown('<h3 class="text-gradient-blue" style="margin-top: 20px;">✉️ Send a Message</h3>', unsafe_allow_html=True)
+
+with st.form("contact_form"):
+    col1, col2 = st.columns(2)
+    with col1:
         name = st.text_input("Your Name", placeholder="Enter your name")
         email = st.text_input("Your Email", placeholder="Enter your email")
+    with col2:
         service_interest = st.selectbox("I'm interested in", 
                                         ["Python Development", "Web Development", "Web App", 
-                                         "Database Design", "Chatbot", "Data Analysis"])
-        message = st.text_area("Message", placeholder="Tell me about your project...", height=100)
-        
-        submitted = st.form_submit_button("Send Message", use_container_width=True)
-        
-        if submitted:
-            if name and email and message:
-                st.success("✅ Message sent! I'll reply within 24 hours.")
-                st.balloons()
-            else:
-                st.error("❌ Please fill all fields before sending.")
+                                         "Database Design", "Chatbot", "Data Analysis", "Other"])
+        phone = st.text_input("Phone (Optional)", placeholder="Enter your phone")
+    
+    message = st.text_area("Message", placeholder="Tell me about your project...", height=120)
+    
+    submitted = st.form_submit_button("📩 Send Message", use_container_width=True)
+    
+    if submitted:
+        if name and email and message:
+            st.success("✅ Message sent! I'll reply within 24 hours.")
+            st.balloons()
+        else:
+            st.error("❌ Please fill Name, Email and Message fields.")
 
 # ==================== FOOTER ====================
 st.markdown("""
@@ -655,7 +837,15 @@ st.markdown("""
     <p>© 2025 Monika Jaiswal | Computer Science Student & Software Developer</p>
     <p>💼 Available for Freelance Work | Let's Build Something Great Together</p>
     <p style="margin-top: 10px;">📧 monikajaiswal200@gmail.com | 📱 +91 8736019810</p>
-    <p style="margin-top: 10px;">
+    
+    <div class="social-container" style="margin-top: 20px;">
+        <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">💼 LinkedIn</a>
+        <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
+        <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
+    </div>
+    
+    <p style="margin-top: 20px;">
         <a href="https://monikajaiswal22.github.io/portfolio-generator" target="_blank" 
            style="color: #9CA3AF; text-decoration: none;">
             🎨 Try my Portfolio Generator Tool →
