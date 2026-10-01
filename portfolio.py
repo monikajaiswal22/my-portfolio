@@ -20,7 +20,7 @@ def get_resume_download_link(file_path="resumee.pdf"):
         href = f'<a href="data:application/pdf;base64,{b64}" download="Monika_Jaiswal_Resume.pdf" class="btn-red">📄 Download Resume</a>'
         return href
     else:
-        return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
+        return '<a href="#" class="btn-red" onclick="alert(\'Resume file not found. Please add resumee.pdf to project folder.\'); return false;">📄 Download Resume</a>'
 
 # ==================== CSS ====================
 st.markdown("""
@@ -210,7 +210,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==================== HEADER ====================
-resume_link = get_resume_download_link("resume.pdf")
+resume_link = get_resume_download_link("resumee.pdf")
 
 st.markdown(f"""
 <div class="header">
