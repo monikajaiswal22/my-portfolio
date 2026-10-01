@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # ==================== RESUME LOADER ====================
-def get_resume_download_link(file_path="resume.pdf"):
+def get_resume_download_link(file_path="resumee.pdf"):
     """Read resume.pdf and return base64 download link"""
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:
