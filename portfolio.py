@@ -475,7 +475,7 @@ if others:
             </div>
             """, unsafe_allow_html=True)
 
-st.info("💡 **Note:** Please wait for 20-30 seconds College Management & E-Learning apps Render free tier pe hosted hain.")            
+st.info("💡 **Note:** Please wait for 20-30 seconds College Management & E-Learning apps Render free tier hosted.")            
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
