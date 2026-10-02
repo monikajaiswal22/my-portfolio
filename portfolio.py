@@ -23,6 +23,17 @@ def get_resume_download_link(file_path="resumee.pdf"):
     else:
         return '<a href="mailto:monikajaiswal200@gmail.com?subject=Resume Request" class="btn-red">📄 Request Resume</a>'
 
+# ==================== PROFILE PHOTO LOADER ====================
+def get_profile_image(image_path="mnj.png"):
+    """Convert profile image to base64 for embedding in HTML"""
+    if os.path.exists(image_path):
+        with open(image_path, "rb") as f:
+            data = f.read()
+        b64 = base64.b64encode(data).decode()
+        ext = "jpeg" if image_path.lower().endswith((".jpg", ".jpeg")) else "png"
+        return f"data:image/{ext};base64,{b64}"
+    return None
+
 # ==================== CSS ====================
 st.markdown("""
 <style>
@@ -192,6 +203,7 @@ st.markdown("""
         .btn-blue, .btn-red, .btn-outline { padding: 10px 20px; font-size: 14px; margin: 5px 5px 5px 0; }
         .social-btn { padding: 10px 16px; font-size: 13px; min-width: 120px; }
         .card, .stat-box, .service-card, .project-card { padding: 15px; }
+        .header img { width: 120px !important; height: 120px !important; }
     }
     @media (max-width: 480px) {
         .header { padding: 20px 15px; border-radius: 10px; }
@@ -206,12 +218,20 @@ st.markdown("""
         .skill-badge { font-size: 12px; padding: 5px 12px; }
         .service-price { font-size: 20px; }
         .edu-title { font-size: 16px; }
+        .header img { width: 100px !important; height: 100px !important; }
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ==================== HEADER ====================
 resume_link = get_resume_download_link("resumee.pdf")
+
+# Profile photo
+profile_img_data = get_profile_image("mnj.png")
+if profile_img_data:
+    profile_html = f'<img src="{profile_img_data}" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,0.4); box-shadow: 0 6px 20px rgba(0,0,0,0.25);" alt="Monika Jaiswal" />'
+else:
+    profile_html = '<div style="font-size: 80px;">👩‍💻</div>'
 
 st.markdown(f"""
 <div class="header">
@@ -226,8 +246,8 @@ st.markdown(f"""
             </div>
         </div>
         <div style="text-align: center;">
-            <div style="font-size: 80px;">👩‍💻</div>
-            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 10px;">
+            {profile_html}
+            <div style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 15px;">
                 🔥 Open for Work
             </div>
         </div>
@@ -427,7 +447,7 @@ projects = [
         "featured": False
     },
     {
-        "name": "VBT (Full Stack)",
+        "name": "VBT E-Commerce & Inventory Management (Full Stack)",
         "icon": "💼",
         "tech": "PHP | HTML | CSS | JavaScript | MySQL",
         "desc": "Full-stack web project with clean structure, responsive styling and functional user interaction.",
