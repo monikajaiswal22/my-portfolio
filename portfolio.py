@@ -313,10 +313,17 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
-    st.markdown("""
+    # Profile photo for card
+    profile_card_img = get_profile_image("mnj.png")
+    if profile_card_img:
+        profile_card_html = f'<img src="{profile_card_img}" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #2563EB; box-shadow: 0 4px 12px rgba(37,99,235,0.2); margin-bottom: 10px;" alt="Monika Jaiswal" />'
+    else:
+        profile_card_html = '<div style="font-size: 60px;">👩‍🎓</div>'
+
+    st.markdown(f"""
     <div class="card" style="text-align: center;">
-        <div style="font-size: 60px;">👩‍🎓</div>
-        <h3 class="text-gradient-blue">Monika Jaiswal</h3>
+        {profile_card_html}
+        <h3 class="text-gradient-blue" style="margin-top: 10px;">Monika Jaiswal</h3>
         <p>Full Stack Web Developer</p>
         <hr>
         <div style="text-align: left;">
@@ -328,8 +335,6 @@ with col2:
         <p>⭐⭐⭐⭐⭐<br><small>Rated 5/5 by clients</small></p>
     </div>
     """, unsafe_allow_html=True)
-
-st.markdown("<hr>", unsafe_allow_html=True)
 
 # ==================== TECHNICAL SKILLS ====================
 st.markdown('<h2 class="section-title">⚡ Technical Skills</h2>', unsafe_allow_html=True)
