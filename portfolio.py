@@ -1,6 +1,7 @@
 import streamlit as st
 import base64
 import os
+import requests
 
 # Page configuration
 st.set_page_config(
@@ -532,6 +533,8 @@ with col2:
 # ==================== CONTACT FORM ====================
 st.markdown('<h3 class="text-gradient-blue" style="margin-top: 20px;">✉️ Send a Message</h3>', unsafe_allow_html=True)
 
+FORMSPREE_URL = "https://formspree.io/f/xgavbglv"
+
 with st.form("contact_form"):
     col1, col2 = st.columns(2)
     with col1:
@@ -548,10 +551,46 @@ with st.form("contact_form"):
     
     if submitted:
         if name and email and message:
-            st.success("✅ Message sent! I'll reply within 24 hours.")
-            st.balloons()
+            try:
+                with st.spinner("Sending message..."):
+                    response = requests.post(
+                        FORMSPREE_URL,
+                        data={
+                            "Name": name,
+                            "Email": email,
+                            "Phone": phone if phone else "Not provided",
+                            "Service": service_interest,
+                            "Message": message
+                        },
+                        timeout=10
+                    )
+                if response.status_code == 200:
+                    st.success("✅ Message sent! I'll reply within 24 hours.")
+                    st.balloons()
+                else:
+                    st.error("❌ Failed. Please email me at monikajaiswal200@gmail.com")
+            except Exception:
+                st.error("❌ Network error. Please email me at monikajaiswal200@gmail.com")
         else:
             st.error("❌ Please fill Name, Email and Message fields.")
+
+# ==================== WHATSAPP QUICK CONTACT ====================
+st.markdown("""
+<div class="card" style="text-align: center; margin-top: 20px; background: linear-gradient(135deg, #E7F9EF 0%, #DCFCE7 100%); border: 1px solid #25D366;">
+    <h3 style="background: linear-gradient(135deg, #25D366, #128C7E); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        💬 Prefer WhatsApp?
+    </h3>
+    <p style="color: #4B5563; margin: 10px 0;">Get instant reply — click below to chat directly</p>
+    <a href="https://wa.me/918736019810?text=Hi%20Monika,%20I%20want%20to%20discuss%20a%20project" 
+       target="_blank" 
+       style="background: linear-gradient(135deg, #25D366, #128C7E); color: white !important;
+              padding: 12px 30px; border-radius: 8px; text-decoration: none;
+              display: inline-block; font-weight: 600; margin-top: 10px;
+              box-shadow: 0 4px 12px rgba(37,211,102,0.3);">
+        💬 Chat on WhatsApp
+    </a>
+</div>
+""", unsafe_allow_html=True)
 
 # ==================== FOOTER ====================
 st.markdown("""
