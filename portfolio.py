@@ -436,6 +436,22 @@ projects = [
         "featured": True
     },
     {
+        "name": "Shyam Bhog - Sweets, Bakery & Celebrations",
+        "icon": "🍬",
+        "tech": "HTML | CSS | JavaScript | Responsive Design",
+        "desc": "Restaurant & sweets shop website with party booking packages, menu, Instagram feed and Google reviews.",
+        "url": "https://shyam-bhog.netlify.app/",
+        "featured": False
+    },
+    {
+        "name": "Premshree Restaurant",
+        "icon": "🍽️",
+        "tech": "HTML | CSS | JavaScript | Responsive Design",
+        "desc": "Modern restaurant website with menu, gallery, online ordering and reservation features.",
+        "url": "https://premshree-restaurant.netlify.app/",
+        "featured": False
+    },
+    {
         "name": "College Management System",
         "icon": "🏫",
         "tech": "Python | Flask | MySQL | Bootstrap",
@@ -452,10 +468,10 @@ projects = [
         "featured": False
     },
     {
-        "name": "VBT E-Commerce & Inventory Management (Full Stack)",
+        "name": "VBT E-Commerce & Inventory Management",
         "icon": "💼",
         "tech": "PHP | HTML | CSS | JavaScript | MySQL",
-        "desc": "Full-stack web project with clean structure, responsive styling and functional user interaction.",
+        "desc": "Full-stack e-commerce & inventory management system with clean structure and responsive styling.",
         "url": "mailto:monikajaiswal200@gmail.com?subject=VBT Project Demo Request",
         "featured": False
     }
@@ -483,6 +499,7 @@ for project in featured:
     """, unsafe_allow_html=True)
 
 if others:
+    # 3 columns for cards
     project_cols = st.columns(3)
     for i, project in enumerate(others):
         with project_cols[i % 3]:
