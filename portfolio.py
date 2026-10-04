@@ -428,20 +428,12 @@ st.markdown('<h2 class="section-title">🚀 My Projects</h2>', unsafe_allow_html
 
 projects = [
     {
-        "name": "Portfolio Generator",
-        "icon": "🎨",
-        "tech": "Streamlit | Python | HTML/CSS | JavaScript",
-        "desc": "Create stunning professional portfolios in minutes with live preview and download.",
-        "url": "https://monikajaiswal22.github.io/portfolio-generator",
-        "featured": True
-    },
-    {
         "name": "Shyam Bhog - Sweets, Bakery & Celebrations",
         "icon": "🍬",
         "tech": "HTML | CSS | JavaScript | Responsive Design",
-        "desc": "Restaurant & sweets shop website with party booking packages, menu, Instagram feed and Google reviews.",
+        "desc": "Restaurant & sweets shop website with party booking packages (Silver/Gold/Platinum), menu, Instagram feed and Google reviews integration.",
         "url": "https://shyam-bhog.netlify.app/",
-        "featured": False
+        "featured": True
     },
     {
         "name": "Premshree Restaurant",
@@ -449,7 +441,15 @@ projects = [
         "tech": "HTML | CSS | JavaScript | Responsive Design",
         "desc": "Modern restaurant website with menu, gallery, online ordering and reservation features.",
         "url": "https://premshree-restaurant.netlify.app/",
-        "featured": False
+        "featured": True
+    },
+    {
+        "name": "Portfolio Generator",
+        "icon": "🎨",
+        "tech": "Streamlit | Python | HTML/CSS | JavaScript",
+        "desc": "Create stunning professional portfolios in minutes with live preview and download.",
+        "url": "https://monikajaiswal22.github.io/portfolio-generator",
+        "featured": True
     },
     {
         "name": "College Management System",
@@ -480,17 +480,19 @@ projects = [
 featured = [p for p in projects if p.get("featured")]
 others = [p for p in projects if not p.get("featured")]
 
+# Featured projects — full width, one by one
 for project in featured:
     st.markdown(f"""
-    <div class="project-card" style="border: 2px solid #10b981;">
-        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-            <div style="font-size: 60px;">{project['icon']}</div>
+    <div class="project-card" style="border: 2px solid #10b981; margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 25px; flex-wrap: wrap;">
+            <div style="font-size: 70px; flex-shrink: 0;">{project['icon']}</div>
             <div style="flex: 1; min-width: 250px;">
                 <div class="featured-badge">⭐ Featured Project</div>
-                <h3 class="text-gradient-blue" style="font-size: 24px; margin-bottom: 5px;">{project['name']}</h3>
+                <h3 class="text-gradient-blue" style="font-size: 26px; margin-bottom: 8px;">{project['name']}</h3>
                 <div class="project-tech">{project['tech']}</div>
-                <p style="color: #6B7280; margin: 10px 0;">{project['desc']}</p>
-                <a href="{project['url']}" target="_blank" class="btn-blue" style="text-decoration: none; display: inline-block;">
+                <p style="color: #6B7280; margin: 12px 0; font-size: 15px; line-height: 1.6;">{project['desc']}</p>
+                <a href="{project['url']}" target="_blank" class="btn-blue" 
+                   style="text-decoration: none; display: inline-block;">
                     🚀 View Live Demo
                 </a>
             </div>
@@ -498,8 +500,8 @@ for project in featured:
     </div>
     """, unsafe_allow_html=True)
 
+# Other projects — 3 column grid
 if others:
-    # 3 columns for cards
     project_cols = st.columns(3)
     for i, project in enumerate(others):
         with project_cols[i % 3]:
@@ -519,8 +521,6 @@ if others:
             """, unsafe_allow_html=True)
 
 st.info("💡 **Note:** College Management & E-Learning apps Render free tier hosted, please wait for 20-30 seconds to open website.")
-
-st.markdown("<hr>", unsafe_allow_html=True)
 
 # ==================== WHY HIRE ME ====================
 st.markdown('<h2 class="section-title">✨ Why Choose Me?</h2>', unsafe_allow_html=True)
