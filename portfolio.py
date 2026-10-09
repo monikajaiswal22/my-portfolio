@@ -428,19 +428,11 @@ st.markdown('<h2 class="section-title">🚀 My Projects</h2>', unsafe_allow_html
 
 projects = [
     {
-        "name": "Shyam Bhog - Sweets, Bakery & Celebrations",
-        "icon": "🍬",
+        "name": "Foodie Pizza",
+        "icon": "🍕",
         "tech": "HTML | CSS | JavaScript | Responsive Design",
-        "desc": "Restaurant & sweets shop website with party booking packages (Silver/Gold/Platinum), menu, Instagram feed and Google reviews integration.",
-        "url": "https://shyam-bhog.netlify.app/",
-        "featured": True
-    },
-    {
-        "name": "Premshree Restaurant",
-        "icon": "🍽️",
-        "tech": "HTML | CSS | JavaScript | Responsive Design",
-        "desc": "Modern restaurant website with menu, gallery, online ordering and reservation features.",
-        "url": "https://premshree-restaurant.netlify.app/",
+        "desc": "Modern pizza restaurant website with interactive menu, online ordering, deals section and mobile-friendly responsive layout.",
+        "url": "https://foodiepizzaa.netlify.app/",
         "featured": True
     },
     {
@@ -457,6 +449,22 @@ projects = [
         "tech": "Python | Flask | MySQL | Bootstrap",
         "desc": "Web-based application to manage college information and administrative tasks with structured pages.",
         "url": "https://college-management-system-g3z2.onrender.com",
+        "featured": True
+    },
+    {
+        "name": "Shyam Bhog - Sweets, Bakery & Celebrations",
+        "icon": "🍬",
+        "tech": "HTML | CSS | JavaScript | Responsive Design",
+        "desc": "Restaurant & sweets shop website with party booking packages (Silver/Gold/Platinum), menu, Instagram feed and Google reviews integration.",
+        "url": "https://shyam-bhog.netlify.app/",
+        "featured": False
+    },
+    {
+        "name": "Premshree Restaurant",
+        "icon": "🍽️",
+        "tech": "HTML | CSS | JavaScript | Responsive Design",
+        "desc": "Modern restaurant website with menu, gallery, online ordering and reservation features.",
+        "url": "https://premshree-restaurant.netlify.app/",
         "featured": False
     },
     {
