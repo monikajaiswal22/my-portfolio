@@ -452,22 +452,6 @@ projects = [
         "featured": True
     },
     {
-        "name": "Shyam Bhog - Sweets, Bakery & Celebrations",
-        "icon": "🍬",
-        "tech": "HTML | CSS | JavaScript | Responsive Design",
-        "desc": "Restaurant & sweets shop website with party booking packages (Silver/Gold/Platinum), menu, Instagram feed and Google reviews integration.",
-        "url": "https://shyam-bhog.netlify.app/",
-        "featured": False
-    },
-    {
-        "name": "Premshree Restaurant",
-        "icon": "🍽️",
-        "tech": "HTML | CSS | JavaScript | Responsive Design",
-        "desc": "Modern restaurant website with menu, gallery, online ordering and reservation features.",
-        "url": "https://premshree-restaurant.netlify.app/",
-        "featured": False
-    },
-    {
         "name": "E-Learning Platform",
         "icon": "📚",
         "tech": "Python | Flask | MySQL | Bootstrap",
