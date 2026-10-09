@@ -397,11 +397,11 @@ st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown('<h2 class="section-title">💼 Freelance Services</h2>', unsafe_allow_html=True)
 
 services = [
-    {"icon": "🐍", "name": "Python Development", "price": "₹9,999-₹29,999", "desc": "Flask, Automation, APIs"},
-    {"icon": "🌐", "name": "Web Development", "price": "₹7,999-₹39,999", "desc": "Responsive PHP/Python Websites"},
-    {"icon": "📱", "name": "Web Applications", "price": "₹12,999-₹49,999", "desc": "Full-Stack Apps"},
+    {"icon": "🐍", "name": "Python Development", "price": "₹9,999-₹19,999", "desc": "Flask, Automation, APIs"},
+    {"icon": "🌐", "name": "Web Development", "price": "₹7,999-₹29,999", "desc": "Responsive PHP/Python Websites"},
+    {"icon": "📱", "name": "Web Applications", "price": "₹12,999-₹39,999", "desc": "Full-Stack Apps"},
     {"icon": "🗄️", "name": "Database Design", "price": "₹3,999-₹9,999", "desc": "MySQL Optimization & Queries"},
-    {"icon": "🎨", "name": "Frontend Design", "price": "₹5,999-₹29,999", "desc": "HTML/CSS/Bootstrap UI"},
+    {"icon": "🎨", "name": "Frontend Design", "price": "₹5,999-₹19,999", "desc": "HTML/CSS/Bootstrap UI"},
     {"icon": "📊", "name": "Data Analysis", "price": "₹4,999-₹19,999", "desc": "Visualization & Reports"}
 ]
 
