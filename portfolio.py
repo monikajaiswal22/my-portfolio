@@ -558,7 +558,7 @@ with col2:
         <div style="margin-top: 15px;">
             <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">🐙 GitHub - monikajaiswal22</a>
             <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">💼 LinkedIn - Monika Jaiswal</a>
-            <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">📸 Instagram - @_coder_girl_mj_</a>
+            <a href="https://www.instagram.com/web_with_monika" target="_blank" class="social-btn social-instagram" style="width: 100%; margin-bottom: 10px; box-sizing: border-box;">📸 Instagram - @_coder_girl_mj_</a>
             <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr" style="width: 100%; box-sizing: border-box;">💚 Fiverr - Hire Me</a>
         </div>
     </div>
