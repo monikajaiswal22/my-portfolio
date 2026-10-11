@@ -263,7 +263,7 @@ st.markdown("""
 <div class="social-container">
     <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">🐙 GitHub</a>
     <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">💼 LinkedIn</a>
-    <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
+    <a href="https://www.instagram.com/web_with_monika" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
     <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
 </div>
 """, unsafe_allow_html=True)
@@ -635,7 +635,7 @@ st.markdown("""
     <div class="social-container" style="margin-top: 20px;">
         <a href="https://github.com/monikajaiswal22" target="_blank" class="social-btn social-github">🐙 GitHub</a>
         <a href="https://www.linkedin.com/in/er-monika-jaiswal-983a9b179" target="_blank" class="social-btn social-linkedin">💼 LinkedIn</a>
-        <a href="https://www.instagram.com/_coder_girl_mj_" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
+        <a href="https://www.instagram.com/web_with_monika" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
         <a href="https://www.fiverr.com/s/kXLkmEk" target="_blank" class="social-btn social-fiverr">💚 Fiverr</a>
     </div>
     <p style="margin-top: 20px;">
